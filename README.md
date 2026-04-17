@@ -1,7 +1,7 @@
 # Philben-files
 Work for bioavailability paper with Philben
 
-Primarily rscripts for making figures, but also a few for running PCAs, ANOVAs, multiple regressions, and stepwise regressions
+Primarily rscripts for making figures, but also a few for running PCAs, ANOVAs, multiple regressions, and stepwise regressions.
 Most scripts will have references at the top for wherever code was sourced from
 
 Scripts key:
