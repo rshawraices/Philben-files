@@ -10,6 +10,12 @@
     #https://www.geeksforgeeks.org/r-language/link-your-github-account-with-r-studio/,
     #https://docs.posit.co/ide/user/ide/guide/tools/version-control.html
 
+##NOTES##
+# when setting up/figuring out github stuff I made a project folder in R called "Philben" that I wasn't able to link to github - now obsolete
+# similarly, in Github I made a repository called "Philben-files" that I put my token in lmao and it wouldn't let me push anything because I shouldn't be publishing that lol
+# so now using the repository "Philben-project" located in the Philben->Philben-files folder in my computer (accidentally nested it but whatever)
+# so "Philben" project in my computer and the "Philben-files" repo/project in Github/my computer are obsolete
+
 
 #testing github  
 #making a token
