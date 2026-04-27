@@ -49,15 +49,27 @@ biplot(analysis)
 
 #------------------------------------------------------------------------------------------------------------------------
 #loadings plot
-fig2prep <- fviz_pca_var(analysis, col.circle = NA, col.var = "black", labelsize=4, geom=c("arrow","text"),repel=TRUE, arrowsize=0.5)+
+fig2prep <- fviz_pca_var(analysis, col.circle = NA, col.var = "black", 
+                         axes.linetype="solid", labelsize=5, 
+                         font.family = "serif", geom=c("arrow","text"),
+                         repel=TRUE, arrowsize=0.4)+
             labs(x="PC1 (25.3%)", y = "PC2 (17.5%)", title=NULL)+
-            theme(panel.background = element_rect(fill = NA),
+            theme(panel.background = element_rect(colour="white"),
                   panel.grid.major = element_line(colour = NA),
                   panel.grid.minor = element_line(colour = NA),
                   panel.border=element_rect(colour="black",fill=NA,linewidth=1),
+                  axis.title = element_text(size=14),
+                  axis.text = element_text(size=12),
                   text=element_text(family = "serif"))
         
 fig2prep
+
+
+ggsave("fig2.png", plot=fig2prep,
+       path= "C:/Users/rache/Downloads/work stuff/research/Philben",
+       units="in",
+       width=12.5,
+       height=5.5)
 
 ##BOOKMARK ----- trying to get loadings labels in times new roman, gotta fix labels, get them not to be overlapped by arrows, etc etc
 
