@@ -62,7 +62,7 @@ fig2prep <- fviz_pca_var(analysis, col.circle = NA, col.var = "black",
                   axis.title = element_text(size=14),
                   axis.text = element_text(size=12),
                   text=element_text(family = "serif"),
-                  plot.background = element_rect(fill = "white"))
+                  plot.background = element_rect(fill = "white", linewidth=NA))
         
 
 fig2prep
