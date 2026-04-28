@@ -40,30 +40,32 @@ colnames(totalPCA1)[which(names(totalPCA1) == "Aerobic.CO2")] <- "AerCO2"
 
 
 
-analysis<-prcomp(totalPCA1, center=TRUE, scale=TRUE)
+analysis<-prcomp(totalPCA1, center=TRUE, scale=TRUE, rank=2) #rank has it only output the first 2 pcas
 analysis
-biplot(analysis)
-
+bp<- biplot(analysis)
         
 ?biplot
 
 #------------------------------------------------------------------------------------------------------------------------
 #loadings plot
-fig2prep <- fviz_pca_var(analysis, col.circle = NA, col.var = "black", 
-                         axes.linetype="solid", labelsize=5, 
+fig2prep <- fviz_pca_var(analysis, col.circle = NA, col.var = "black",
+                         axes.linetype="solid", labelsize=5,
                          font.family = "serif", geom=c("arrow","text"),
-                         repel=TRUE, arrowsize=0.4)+
+                         fontface="bold",
+                       #  font.label= c(5,"bold"),          #this is supposed to make the labels bold but there seems to be an issue with the wrapper to ggscatter and I can't find a way to resolve it
+                       #  face="bold",
+                         repel = TRUE, arrowsize=0.4)+
             labs(x="PC1 (25.3%)", y = "PC2 (17.5%)", title=NULL)+
-            theme(panel.background = element_rect(colour="white"),
-                  panel.grid.major = element_line(colour = NA),
+            theme(panel.grid.major = element_line(colour = NA),
                   panel.grid.minor = element_line(colour = NA),
-                  panel.border=element_rect(colour="black",fill=NA,linewidth=1),
+                  panel.border=element_rect(colour="black", fill=NA, linewidth=1),
                   axis.title = element_text(size=14),
                   axis.text = element_text(size=12),
-                  text=element_text(family = "serif"))
+                  text=element_text(family = "serif"),
+                  plot.background = element_rect(fill = "white"))
         
-fig2prep
 
+fig2prep
 
 ggsave("fig2.png", plot=fig2prep,
        path= "C:/Users/rache/Downloads/work stuff/research/Philben",
