@@ -19,6 +19,7 @@ library(factoextra)
 library(MASS)
 library(ggplot2)
 library(ggfortify)
+library(ggpubr)
 
 totalPCA1<-read.delim("C:/Users/rache/Downloads/work stuff/research/Philben/pca3.20.24.txt") #this is my old PCA code
 View(totalPCA1)
@@ -40,20 +41,55 @@ colnames(totalPCA1)[which(names(totalPCA1) == "Aerobic.CO2")] <- "AerCO2"
 
 
 
-analysis<-prcomp(totalPCA1, center=TRUE, scale=TRUE, rank=2) #rank has it only output the first 2 pcas
+analysis<-prcomp(totalPCA1, center=TRUE, scale=TRUE) #rank has it only output the first 2 pcas
 analysis
-bp<- biplot(analysis)
-        
+biplot(analysis, xlim=c(-0.4,0.4), ylim=c(-0.4,0.4))
+
 ?biplot
+?prcomp
+
+#results from 'analysis':         
+#                      PC1         PC2
+#pH             0.27972687  0.22328745
+#C:N           -0.39997146 -0.13340020
+#TotalOrgAcids -0.04972301  0.33290129
+#TotalInorgN    0.34364558 -0.04322101
+#%CSugars      -0.25996580 -0.10271434
+#%Glucose       0.43207479  0.01108056
+#%Rhamnose      0.32307650  0.03731928
+#THAA%N        -0.05710087 -0.45518750
+#AAIndex        0.02021676  0.10154339
+#THAA%C         0.25827026 -0.31651734
+#%Hyp           0.03419910 -0.43138236
+#%Glycine       0.03870026  0.16486751
+#HypC           0.14052314 -0.49082138
+#AnaCO2        -0.27689146 -0.10546571
+#AerCO2        -0.27239403  0.14281376
+#CH4           -0.19725010 -0.06483542
+
+#---playing around with trying to fix the axes ---#
+pcadf <- read.delim("C:/Users/rache/Downloads/work stuff/research/Philben/pcas4.29.2026.txt")
+View(pcadf)
+
+ggscatter(pcadf, x="PC1", y="PC2", label = "X", repel=TRUE)
+?ggscatter
+
+
+fviz_pca(pcadf, geom.ind=FALSE, geom.var=c("text", "arrow"))
+
+fviz(pcadf, geom=c("text","arrow"))
 
 #------------------------------------------------------------------------------------------------------------------------
 #loadings plot
 fig2prep <- fviz_pca_var(analysis, col.circle = NA, col.var = "black",
                          axes.linetype="solid", labelsize=5,
                          font.family = "serif", geom=c("arrow","text"),
-                         fontface="bold",
-                       #  font.label= c(5,"bold"),          #this is supposed to make the labels bold but there seems to be an issue with the wrapper to ggscatter and I can't find a way to resolve it
-                       #  face="bold",
+                        # font.subtitle="bold",
+                       #  label.rectangle=TRUE,
+                        # font.label = c("black", 5, "bold"),
+                       #  font.label= "bold",          #this is supposed to make the labels bold but there seems to be an issue with the wrapper to ggscatter and I can't find a way to resolve it
+                        # face="bold",
+                      # font.label = list(face = "bold"),
                          repel = TRUE, arrowsize=0.4)+
             labs(x="PC1 (25.3%)", y = "PC2 (17.5%)", title=NULL)+
             theme(panel.grid.major = element_line(colour = NA),
