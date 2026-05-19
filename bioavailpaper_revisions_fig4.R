@@ -25,8 +25,8 @@ View(fig4data)
 fig4a <- ggplot(data=fig4data,
                 aes(x=Exp..Aerob.CO2,y=Pred..Aerob.CO2,colour = Microtopography, shape = Microtopography))+
   geom_point(size=3)+
-  labs(x="Experimental Aerobic CO"[2]~" ",y="Predicted Aerobic CO" [2]~ " (μmol/gdw/day)",
-       caption= "(μmol/gdw/day)")+
+  labs(x="Experimental Aerobic CO"[2]~" ",y=expression("Predicted Aerobic CO" [2]~ " (μmol gdw"^-1~" day"^-1~")"),
+       caption= expression("(μmol gdw"^-1~"day"^-1~")"))+
   expand_limits(x = 0, y = 0)+
   scale_x_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
                      breaks=seq(0,450,75), limits=c(0,450),expand=c(0,0)) +
@@ -49,7 +49,7 @@ fig4a <- ggplot(data=fig4data,
         axis.ticks.length = unit(-0.15,"cm"),
         plot.margin=unit(c(1,0.3,1,0.5),"cm"),
         plot.caption.position = "plot",                                ##this is the units line
-        plot.caption = element_text(hjust = 0.54, size=14))+                     ##centering the units
+        plot.caption = element_text(hjust = 0.6, size=14))+                     ##centering the units
  geom_line(aes(x=line.1, y=line),color="black") #adds the line
   
 
@@ -60,8 +60,8 @@ fig4a
 fig4b <- ggplot(data=fig4data,
                 aes(x=Exp..Anaerob.CO2,y=Pred..Anaerob.CO2,colour = Microtopography, shape = Microtopography))+
   geom_point(size=3)+
-  labs(x="Experimental Anaerobic CO"[2]~ " ",y="Predicted Anaerobic CO" [2]~ " (μmol/gdw/day)",
-      caption= "(μmol/gdw/day)")+
+  labs(x="Experimental Anaerobic CO"[2]~ " ",y=expression("Predicted Anaerobic CO" [2]~ " (μmol gdw"^-1~" day"^-1~")"),
+      caption=expression("(μmol gdw"^-1~" day"^-1~")"))+
   expand_limits(x = 0, y = 0)+
   scale_x_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
                      breaks=seq(0,2.5,.5), limits=c(0,2.5),expand=c(0,0)) +
@@ -83,7 +83,7 @@ fig4b <- ggplot(data=fig4data,
         axis.ticks.length = unit(-0.15,"cm"),
         plot.margin=unit(c(1,0.25,1,0.25),"cm"),
         plot.caption.position = "plot",                                ##this is the units line
-        plot.caption = element_text(hjust = 0.54, size=14))+ 
+        plot.caption = element_text(hjust = 0.6, size=14))+ 
   geom_line(aes(x=line, y=line.1),color="black")
 
 
@@ -94,8 +94,8 @@ fig4b
 fig4c <- ggplot(data=fig4data,
                 aes(x=Exp..CH4,y=Pred..CH4,colour = Microtopography, shape = Microtopography))+
   geom_point(size=3)+
-  labs(x="Experimental CH"[4]~ " ",y="Predicted CH" [4]~ " (nmol/gdw/day)",
-       caption= "(nmol/gdw/day)")+
+  labs(x="Experimental CH"[4]~ " ",y=expression("Predicted CH" [4]~ " (nmol gdw"^-1~" day"^-1~")"),
+       caption= expression("(nmol gdw"^-1~" day"^-1~")"))+
   expand_limits(x = 0, y = 0)+
   scale_x_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
                      breaks=seq(0,480,80), limits=c(0,480),expand=c(0,0)) +
@@ -118,7 +118,7 @@ fig4c <- ggplot(data=fig4data,
         axis.ticks.length = unit(-0.15,"cm"),
         plot.margin=unit(c(1,0.5,1,0.3),"cm"),
         plot.caption.position = "plot",                                ##this is the units line
-        plot.caption = element_text(hjust = 0.59, size=14))+ 
+        plot.caption = element_text(hjust = 0.62, size=14))+ 
   geom_line(aes(x=line, y=line.1),color="black")
 
 fig4c
@@ -145,7 +145,7 @@ fig4c_inset
 #all together
 fig4 <- grid.arrange(fig4a, fig4b, fig4c_inset, ncol=3)
 
-ggsave("fig4.png", plot=fig4,
+ggsave("fig4final.png", plot=fig4,
        path= "C:/Users/rache/Downloads/work stuff/research/Philben",
        units="in",
        width=12,
