@@ -21,11 +21,11 @@
 #making a token
 library(usethis)
 create_github_token()
-#token expires May 15 2026
+#token expires Aug 17 2026
 
 #linking rstudio to github
 library(gitcreds)
-gitcreds_set()
+gitcreds_set() #use this to link new PAT
 
 #linking this project to github
 use_git()
