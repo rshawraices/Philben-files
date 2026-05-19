@@ -18,7 +18,7 @@
     # https://www.geeksforgeeks.org/r-language/control-size-of-ggplot2-legend-items-in-r/
 #overlaying multiple plots: https://stackoverflow.com/questions/40297206/overlaying-two-plots-using-ggplot2-in-r
 #margins between multiple plots: https://stackoverflow.com/questions/15556068/removing-all-the-space-between-two-ggplots-combined-with-grid-arrange
-
+#having multi-lined axis titles with subscripts/superscripts: https://stackoverflow.com/questions/13223846/ggplot2-two-line-label-with-expression
 
 #---------------------------------------------------------------------------------------------------------
 install.packages("ggplot2","tidyverse")
@@ -39,7 +39,8 @@ View(fig1data)
 fig1a <- ggplot(data=fig1data,
                 aes(x=Aerobic.CO2,y=Depth,colour = Microtopography, shape=Core))+
          geom_point(size=3)+
-         labs(x="Aerobic CO"[2]~ " Production (μmol/gdw/day)",y="Depth (m)")+
+         xlab(expression(atop("Aerobic CO"[2]~ " Production", paste("(μmol gdw"^-1~" day"^-1~")"))))+
+         ylab("Depth (m)")+
          expand_limits(x = 0, y = 0)+
          scale_x_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),    #putting tick marks on opp side w/o labels
                             position = "top", breaks=seq(0,450,75), limits=c(0,450),expand=c(0,0)) +
@@ -69,7 +70,8 @@ fig1a
 fig1b <- ggplot(data=fig1data,
                 aes(x=Anaerobic.CO2,y=Depth,colour = Microtopography, shape=Core))+
   geom_point(size=3)+
-  labs(x="Anaerobic CO"[2]~ " Production (μmol/gdw/day)", y=NULL)+
+  xlab(expression(atop("Anaerobic CO"[2]~ " Production", paste("(μmol gdw"^-1~" day"^-1~")"))))+
+  ylab(NULL)+
   expand_limits(x = 0, y = 0)+
   scale_x_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
                      position = "top", breaks=seq(0,3.5,0.5), limits=c(0,3.5),expand=c(0,0)) +
@@ -95,10 +97,14 @@ fig1b
 
 #---------------------------------------------------------------------------------------------------------
 ## CH4 Prod ##
+install.packages("ggtext")
+library(ggtext)
+
 fig1c <- ggplot(data=fig1data,
                 aes(x=CH4,y=Depth,colour = Microtopography, shape= Core))+
   geom_point(size=3)+
-  labs(x="CH"[4]~ " Production (nmol/gdw/day)", y=NULL)+
+  xlab(expression(atop("CH"[4]~" Production", paste("(nmol gdw"^-1~" day"^-1~")"))))+
+  ylab(NULL)+
   expand_limits(x = 0, y = 0)+
   scale_x_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
                      position = "top", breaks=seq(0,800,200), limits=c(0,800), expand=c(0,0)) +
