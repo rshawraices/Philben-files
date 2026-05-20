@@ -84,6 +84,8 @@ loadings <- as.data.frame(analysis$rotation)
 
 loadings
 
+#---Fig 2 loadings plot -----------------------------------------------------------------#
+
 fig2 <- ggplot(data = loadings, aes(x=PC1, y=PC2)) +
   labs(x="PC1 (25.3%)", y="PC2 (17.5%)")+
   scale_x_continuous(breaks=seq(-0.6,0.6,0.3), limits=c(-0.6,0.6), expand=c(0,0)) +
@@ -117,7 +119,40 @@ ggsave("fig2test.png", plot=fig2,
        height=5)
 
 
-?geom_label
+#---Fig 3 scores plots ------------------------------------------------------------------------------#
+
+fig3data<-read.delim("C:/Users/rache/Downloads/work stuff/research/Philben/revfigs_fig3_5.20.2026.txt") #i took the pca scores and added microtopography, depth, and the sample IDs into this dataframe
+
+View(fig3data)
+
+fig3a <- ggplot(data=fig3data, aes(x=PC1.Scores, y=PC2.Scores,color=Depth,shape=Microtopography))+
+  geom_point(size=2.5)+
+  labs(x="PC1 (25.3%)", y="PC2 (17.5%)")+
+  scale_x_continuous(breaks=seq(-4.5,4.5,1.5), limits=c(-4.5,4.5), expand=c(0,0)) +
+  scale_y_continuous(breaks=seq(-4.5,4.5,1.5), limits=c(-4.5,4.5), expand=c(0,0))+
+  geom_vline(xintercept = 0, linewidth=0.5)+
+  geom_hline(yintercept = 0, linewidth=0.5)+
+  theme(panel.background = element_rect(fill = NA),
+        panel.grid.major = element_line(colour = NA),
+        panel.grid.minor = element_line(colour = NA),
+        panel.border=element_rect(colour="black",fill=NA,linewidth=1),
+        text=element_text(family = "serif"),
+        axis.title = element_text(size=14),
+        axis.text = element_text(size=12),
+        axis.ticks.length = unit(-0.15,"cm"),
+        plot.margin=unit(c(0.5,0.5,0.5,0.5),"cm"),
+        legend.text = element_text(size=12),
+        legend.title=element_text(size=14,face="bold"))
+        #legend.box.background = element_rect(colour="black"),
+        #legend.margin = margin(c(1.5,1,1,1.5)))
+
+fig3a
+
+
+
+
+
+
 
 ###-----OLD WORK BELOW -- had to give up on fviz_pca_var-----------------------------------------------#
 
