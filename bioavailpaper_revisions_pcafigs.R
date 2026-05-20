@@ -5,8 +5,17 @@
 #biplots: https://www.geeksforgeeks.org/r-language/how-to-create-a-biplot-in-r/
           # https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/biplot
           # https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/biplot.princomp
-#general PCA: https://www.geeksforgeeks.org/r-language/how-to-make-pca-plot-with-r/
+#general PCA: https://www.geeksforgeeks.org/r-language/how-to-make-pca-plot-with-r/, https://yongfu.name/MVA/PCA.html
 #changing column titles for a dataframe: https://www.geeksforgeeks.org/r-language/change-column-name-of-a-given-dataframe-in-r/
+#repelling label names: https://stackoverflow.com/questions/40542685/how-to-jitter-remove-overlap-for-geom-text-labels
+#adding in the 0,0 axes (or any reference line): https://ggplot2.tidyverse.org/reference/geom_abline.html
+#THE BEST REFERENCE - making the pca plot from scratch with ggplot to have all the theme options: https://www.geeksforgeeks.org/r-language/how-to-add-calibrated-axes-to-pca-biplot-in-ggplot2-in-r/
+#fviz documentation: https://rpkgs.datanovia.com/factoextra/reference/fviz.html, https://rpkgs.datanovia.com/factoextra/reference/fviz_pca.html
+#ggtext ref: https://rpkgs.datanovia.com/ggpubr/reference/ggtext.html
+#more label refs: https://www.sthda.com/english/articles/24-ggpubr-publication-ready-plots/78-perfect-scatter-plots-with-correlation-and-marginal-histograms/
+          #https://ggplot2-book.org/annotations#sec-text-labels, https://www.statology.org/geom_label-ggplot2/
+#ggscatter: https://rpkgs.datanovia.com/ggpubr/reference/ggscatter.html
+#changing background panels/gridlines: https://www.sthda.com/english/wiki/ggplot2-themes-and-background-colors-the-3-elements#google_vignette
 
 
 #----------------------------------------------------------------------------------------------------------------------------
