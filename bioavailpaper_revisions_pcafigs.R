@@ -73,7 +73,7 @@ analysis
 scores <- as.data.frame(analysis$x)
 loadings <- as.data.frame(analysis$rotation)
 
-loadings 
+loadings
 
 fig2 <- ggplot(data = loadings, aes(x=PC1, y=PC2)) +
   labs(x="PC1 (25.3%)", y="PC2 (17.5%)")+
@@ -81,7 +81,7 @@ fig2 <- ggplot(data = loadings, aes(x=PC1, y=PC2)) +
   scale_y_continuous(breaks=seq(-0.6,0.6,0.3), limits=c(-0.6,0.6), expand=c(0,0))+
   geom_segment(data = loadings, aes(x=0, y=0, xend=PC1, yend=PC2),
                arrow = arrow(length = unit(0.2, "cm")), color = "black", linewidth=0.3) +
-  geom_text_repel(data = loadings, aes(x = PC1, y = PC2, label = rownames(loadings)),
+  geom_text_repel(data = loadings, aes(x = PC1, y = PC2, label=rownames(loadings)),
             color = "black", vjust = -0.5, family="serif", fontface="bold",
             size=4.23333, direction="both", 
             nudge_x=c(0,0,0,0,0,0,0,0,-0.05,0,0,0.07,0,0,0,0),
@@ -108,7 +108,7 @@ ggsave("fig2test.png", plot=fig2,
        height=5)
 
 
-
+?geom_label
 
 ###-----OLD WORK BELOW -- had to give up on fviz_pca_var-----------------------------------------------#
 
