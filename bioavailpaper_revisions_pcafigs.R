@@ -77,15 +77,18 @@ loadings
 
 fig2 <- ggplot(data = loadings, aes(x=PC1, y=PC2)) +
   labs(x="PC1 (25.3%)", y="PC2 (17.5%)")+
-  scale_x_continuous(breaks=seq(-0.5,0.5,0.25), limits=c(-0.5,0.5), expand=c(0,0)) +
-  scale_y_continuous(breaks=seq(-0.5,0.5,0.25), limits=c(-0.5,0.5), expand=c(0,0))+
+  scale_x_continuous(breaks=seq(-0.6,0.6,0.3), limits=c(-0.6,0.6), expand=c(0,0)) +
+  scale_y_continuous(breaks=seq(-0.6,0.6,0.3), limits=c(-0.6,0.6), expand=c(0,0))+
   geom_segment(data = loadings, aes(x=0, y=0, xend=PC1, yend=PC2),
                arrow = arrow(length = unit(0.2, "cm")), color = "black", linewidth=0.3) +
   geom_text_repel(data = loadings, aes(x = PC1, y = PC2, label = rownames(loadings)),
             color = "black", vjust = -0.5, family="serif", fontface="bold",
-            size=4.23333)+
-  geom_vline(xintercept = 0)+
-  geom_hline(yintercept = 0)+
+            size=4.23333, direction="both", 
+            nudge_x=c(0,0,0,0,0,0,0,0,-0.05,0,0,0.07,0,0,0,0),
+            nudge_y=c(0,0,0.02,0,0.01,0,0.04,0,0.06,0,0,0.02,0,0,0.01,0.01),
+            min.segment.length=1)+
+  geom_vline(xintercept = 0, linewidth=0.3)+
+  geom_hline(yintercept = 0, linewidth=0.3)+
   theme(panel.background = element_rect(fill = NA),
         panel.grid.major = element_line(colour = NA),
         panel.grid.minor = element_line(colour = NA),
@@ -94,7 +97,7 @@ fig2 <- ggplot(data = loadings, aes(x=PC1, y=PC2)) +
         axis.title = element_text(size=14),
         axis.text = element_text(size=12),
         axis.ticks.length = unit(-0.15,"cm"),
-        plot.margin=unit(c(0.5,0.5,0.5,0.5),"cm"),)
+        plot.margin=unit(c(0.5,0.5,0.5,0.5),"cm"))
 
 fig2
 
