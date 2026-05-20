@@ -20,6 +20,7 @@ library(MASS)
 library(ggplot2)
 library(ggfortify)
 library(ggpubr)
+library(ggrepel) #to avoid overlapping labels
 
 totalPCA1<-read.delim("C:/Users/rache/Downloads/work stuff/research/Philben/pca3.20.24.txt") #this is my old PCA code
 View(totalPCA1)
@@ -43,10 +44,9 @@ colnames(totalPCA1)[which(names(totalPCA1) == "Aerobic.CO2")] <- "AerCO2"
 
 analysis<-prcomp(totalPCA1, center=TRUE, scale=TRUE) #rank has it only output the first 2 pcas
 analysis
-biplot(analysis, xlim=c(-0.4,0.4), ylim=c(-0.4,0.4))
 
-?biplot
-?prcomp
+#biplot(analysis, xlim=c(-0.4,0.4), ylim=c(-0.4,0.4)) #for checking bare bones results
+
 
 #results from 'analysis':         
 #                      PC1         PC2
@@ -66,6 +66,48 @@ biplot(analysis, xlim=c(-0.4,0.4), ylim=c(-0.4,0.4))
 #AnaCO2        -0.27689146 -0.10546571
 #AerCO2        -0.27239403  0.14281376
 #CH4           -0.19725010 -0.06483542
+
+
+#making a dataframe from the prcomp results
+
+scores <- as.data.frame(analysis$x)
+loadings <- as.data.frame(analysis$rotation)
+
+loadings 
+
+fig2 <- ggplot(data = loadings, aes(x=PC1, y=PC2)) +
+  labs(x="PC1 (25.3%)", y="PC2 (17.5%)")+
+  scale_x_continuous(breaks=seq(-0.5,0.5,0.25), limits=c(-0.5,0.5), expand=c(0,0)) +
+  scale_y_continuous(breaks=seq(-0.5,0.5,0.25), limits=c(-0.5,0.5), expand=c(0,0))+
+  geom_segment(data = loadings, aes(x=0, y=0, xend=PC1, yend=PC2),
+               arrow = arrow(length = unit(0.2, "cm")), color = "black", linewidth=0.3) +
+  geom_text_repel(data = loadings, aes(x = PC1, y = PC2, label = rownames(loadings)),
+            color = "black", vjust = -0.5, family="serif", fontface="bold",
+            size=4.23333)+
+  geom_vline(xintercept = 0)+
+  geom_hline(yintercept = 0)+
+  theme(panel.background = element_rect(fill = NA),
+        panel.grid.major = element_line(colour = NA),
+        panel.grid.minor = element_line(colour = NA),
+        panel.border=element_rect(colour="black",fill=NA,linewidth=1),
+        text=element_text(family = "serif"),
+        axis.title = element_text(size=14),
+        axis.text = element_text(size=12),
+        axis.ticks.length = unit(-0.15,"cm"),
+        plot.margin=unit(c(0.5,0.5,0.5,0.5),"cm"),)
+
+fig2
+
+ggsave("fig2test.png", plot=fig2,
+       path= "C:/Users/rache/Downloads/work stuff/research/Philben",
+       units="in",
+       width=5,
+       height=5)
+
+
+
+
+###-----OLD WORK BELOW -- had to give up on fviz_pca_var-----------------------------------------------#
 
 #---playing around with trying to fix the axes ---#
 pcadf <- read.delim("C:/Users/rache/Downloads/work stuff/research/Philben/pcas4.29.2026.txt")
