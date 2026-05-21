@@ -171,25 +171,16 @@ rhamnose
 #---------------------------------------------------------------------------------------------------------
 ##Combo plot ##
 
-lay <- rbind(c(1,NA,2,NA,3),
-             c(NA,4,NA,5,NA))
 
-lay<-layout(mat = matrix(c(1,1,2,2,3,3,
-                      0,4,4,5,5,0), nrow = 2, ncol=6, byrow = TRUE))
-
-grid.arrange(grobs=list(csugars, cthaa, nthaa, cn, rhamnose), 
+suppfig <- grid.arrange(grobs=list(csugars, cthaa, nthaa, cn, rhamnose), 
              layout_matrix = matrix(c(1,1,2,2,3,3,NA,4,4,5,5,NA),nrow=2, byrow=T),
              widths=c(0.5,0.5,0.5,0.5,0.5,0.5),
              heights=c(1,1))
  
 
-?layout_matrix
-?lapply
-gs <- lapply(c(csugars, cthaa, nthaa, cn, rhamnose), FUN = )
+suppfig
 
-suppfig <- grid.arrange(csugars, cthaa, nthaa, cn, rhamnose, ncol=3, nrow=2)
-
-ggsave("fig1.png", plot=fig1,
+ggsave("suppfig.png", plot=suppfig,
        path= "C:/Users/rache/Downloads/work stuff/research/Philben",
        units="in",
        width=12.5,
