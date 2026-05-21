@@ -9,23 +9,23 @@ library(tidyverse)
 library(gridExtra) #for having multiple plots in one object
 library(lemon)     #for working with plot tickmarks
 
-fig1data <- read.delim("C:/Users/rache/Downloads/work stuff/research/Philben/bioavail_fig1_revisions.txt")
-fig1data$Core <- as.factor(fig1data$Core) #make core into factor so that the symbols work later
+suppfigdata <- read.delim("C:/Users/rache/Downloads/work stuff/research/Philben/bioavail_suppfigs.txt")
+suppfigdata$Core <- as.factor(suppfigdata$Core) #make core into factor so that the symbols work later
 
 #is.factor(fig1data$Core)
-View(fig1data)
+View(suppfigdata)
 
 #---------------------------------------------------------------------------------------------------------
-##Aerobic CO2##
-fig1a <- ggplot(data=fig1data,
-                aes(x=Aerobic.CO2,y=Depth,colour = Microtopography, shape=Core))+
+## %C as Sugars ##
+csugars <- ggplot(data=suppfigdata,
+                aes(x=X.CasSugars,y=Depth,colour = Microtopography, shape=Core))+
   geom_point(size=3)+
-  labs(x="Aerobic CO"[2]~ " Production (μmol/gdw/day)",y="Depth (m)")+
+  labs(x="% C as Sugars",y="Depth (m)")+
   expand_limits(x = 0, y = 0)+
   scale_x_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),    #putting tick marks on opp side w/o labels
-                     position = "top", breaks=seq(0,450,75), limits=c(0,450),expand=c(0,0)) +
+                     position = "top", breaks=seq(0,15,5), limits=c(0,15),expand=c(0,0)) +
   scale_y_continuous(sec.axis=dup_axis(name=NULL, labels = NULL),  #putting tick marks on opp side w/o labels
-                     breaks=seq(0.5,3,.5),limits=c(0,3), expand=c(0,0))+
+                     breaks=seq(0.5,3,0.5),limits=c(0,3), expand=c(0,0))+
   coord_trans(y = "reverse")+
   guides(color = guide_legend(override.aes = list(size = 5)))+
   theme(panel.background = element_rect(fill = NA),
@@ -40,22 +40,22 @@ fig1a <- ggplot(data=fig1data,
         axis.title = element_text(size=15),
         axis.text = element_text(size=14),
         axis.ticks.length = unit(-0.15,"cm"),
-        plot.margin=unit(c(1,0.4,1,0.7),"cm"))               # makes space between combined plots so no labels get cut off
+        plot.margin=unit(c(0.3,0.4,0.3,0.7),"cm"))               # makes space between combined plots so no labels get cut off
 # options(repr.plot.width = 5, repr.plot.height =2)
 
-fig1a
+csugars
 
 #---------------------------------------------------------------------------------------------------------
-##Anaerobic CO2 ##
-fig1b <- ggplot(data=fig1data,
-                aes(x=Anaerobic.CO2,y=Depth,colour = Microtopography, shape=Core))+
+## % C as AA ##
+cthaa <- ggplot(data=suppfigdata,
+                aes(x=X..CasAA,y=Depth,colour = Microtopography, shape=Core))+
   geom_point(size=3)+
-  labs(x="Anaerobic CO"[2]~ " Production (μmol/gdw/day)", y=NULL)+
+  labs(x="% C as THAA", y=NULL)+
   expand_limits(x = 0, y = 0)+
   scale_x_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
-                     position = "top", breaks=seq(0,3.5,0.5), limits=c(0,3.5),expand=c(0,0)) +
+                     position = "top", breaks=seq(0,15,5), limits=c(0,15),expand=c(0,0)) +
   scale_y_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
-                     breaks=seq(0.5,3,.5),limits=c(0,3), expand=c(0,0))+
+                     breaks=seq(0.5,3,0.5),limits=c(0,3), expand=c(0,0))+
   coord_trans(y = "reverse")+
   guides(color = guide_legend(override.aes = list(size = 5)))+
   theme(panel.background = element_rect(fill = NA),
@@ -70,19 +70,77 @@ fig1b <- ggplot(data=fig1data,
         axis.title = element_text(size=15),
         axis.text = element_text(size=14),
         axis.ticks.length = unit(-0.15,"cm"),
-        plot.margin=unit(c(1,0.5,1,0.5),"cm"))
+        plot.margin=unit(c(0.3,0.5,0.3,0.5),"cm"))
 
-fig1b
+cthaa
 
 #---------------------------------------------------------------------------------------------------------
-## CH4 Prod ##
-fig1c <- ggplot(data=fig1data,
-                aes(x=CH4,y=Depth,colour = Microtopography, shape= Core))+
+## % N as AA ##
+nthaa <- ggplot(data=suppfigdata,
+                aes(x=X..NasAA,y=Depth,colour = Microtopography, shape=Core))+
   geom_point(size=3)+
-  labs(x="CH"[4]~ " Production (nmol/gdw/day)", y=NULL)+
+  labs(x="% N as THAA", y=NULL)+
   expand_limits(x = 0, y = 0)+
   scale_x_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
-                     position = "top", breaks=seq(0,800,200), limits=c(0,800), expand=c(0,0)) +
+                     position = "top", breaks=seq(0,70,10), limits=c(0,70),expand=c(0,0)) +
+  scale_y_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
+                     breaks=seq(0.5,3,0.5),limits=c(0,3), expand=c(0,0))+
+  coord_trans(y = "reverse")+
+  guides(color = guide_legend(override.aes = list(size = 5)))+
+  theme(panel.background = element_rect(fill = NA),
+        panel.grid.major = element_line(colour = NA),
+        panel.grid.minor = element_line(colour = NA),
+        panel.border=element_rect(colour="black",fill=NA,linewidth=1),
+        text=element_text(family = "serif"),
+        legend.position = "none",# legend.position.inside=c(.94,0.1),    ##<- hiding the legend
+        #legend.background=element_rect(linewidth=.5,colour="black"),
+        #legend.title = element_text(face="bold",size=12),
+        #legend.text = element_text(size=11),
+        axis.title = element_text(size=15),
+        axis.text = element_text(size=14),
+        axis.ticks.length = unit(-0.15,"cm"),
+        plot.margin=unit(c(0.3,0.5,0.3,0.5),"cm"))
+
+nthaa
+
+#---------------------------------------------------------------------------------------------------------
+## C:N ##
+cn <- ggplot(data=suppfigdata,
+                aes(x=C.N, y=Depth,colour = Microtopography, shape=Core))+
+  geom_point(size=3)+
+  labs(x="C:N", y= "Depth (m)")+
+  expand_limits(x = 0, y = 0)+
+  scale_x_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
+                     position = "top", breaks=seq(0,25,5), limits=c(0,25),expand=c(0,0)) +
+  scale_y_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
+                     breaks=seq(0.5,3,0.5),limits=c(0,3), expand=c(0,0))+
+  coord_trans(y = "reverse")+
+  guides(color = guide_legend(override.aes = list(size = 5)))+
+  theme(panel.background = element_rect(fill = NA),
+        panel.grid.major = element_line(colour = NA),
+        panel.grid.minor = element_line(colour = NA),
+        panel.border=element_rect(colour="black",fill=NA,linewidth=1),
+        text=element_text(family = "serif"),
+        legend.position = "none",# legend.position.inside=c(.94,0.1),    ##<- hiding the legend
+        #legend.background=element_rect(linewidth=.5,colour="black"),
+        #legend.title = element_text(face="bold",size=12),
+        #legend.text = element_text(size=11),
+        axis.title = element_text(size=15),
+        axis.text = element_text(size=14),
+        axis.ticks.length = unit(-0.15,"cm"),
+        plot.margin=unit(c(0.3,0.5,0.3,0.5),"cm"))
+
+cn
+
+#---------------------------------------------------------------------------------------------------------
+## % Rhamnose ##
+rhamnose <- ggplot(data=suppfigdata,
+                aes(x=X.Rhamnose,y=Depth,colour = Microtopography, shape= Core))+
+  geom_point(size=3)+
+  labs(x="% Rhamnose", y=NULL)+
+  expand_limits(x = 0, y = 0)+
+  scale_x_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
+                     position = "top", breaks=seq(0,20,4), limits=c(0,20), expand=c(0,0)) +
   scale_y_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
                      breaks=seq(.5,3,.5),limits=c(0,3), expand=c(0,0))+
   coord_trans(y = "reverse")+
@@ -102,16 +160,34 @@ fig1c <- ggplot(data=fig1data,
         axis.title = element_text(size=15),
         axis.text = element_text(size=14),
         axis.ticks.length = unit(-0.15,"cm"),
-        plot.margin=unit(c(1,1,1,0.1),"cm"))
+        plot.margin=unit(c(0.3,1,0.3,0.1),"cm"))
 # axis.ticks.bottom = element_line(linetype="solid",colour="black"),
 #  axis.ticks.left=element_line(linetype="solid", colour="black"))
 
-fig1c
+rhamnose
+
+
 
 #---------------------------------------------------------------------------------------------------------
 ##Combo plot ##
 
-fig1 <- grid.arrange(fig1a, fig1b, fig1c, ncol=3)
+lay <- rbind(c(1,NA,2,NA,3),
+             c(NA,4,NA,5,NA))
+
+lay<-layout(mat = matrix(c(1,1,2,2,3,3,
+                      0,4,4,5,5,0), nrow = 2, ncol=6, byrow = TRUE))
+
+grid.arrange(grobs=list(csugars, cthaa, nthaa, cn, rhamnose), 
+             layout_matrix = matrix(c(1,1,2,2,3,3,NA,4,4,5,5,NA),nrow=2, byrow=T),
+             widths=c(0.5,0.5,0.5,0.5,0.5,0.5),
+             heights=c(1,1))
+ 
+
+?layout_matrix
+?lapply
+gs <- lapply(c(csugars, cthaa, nthaa, cn, rhamnose), FUN = )
+
+suppfig <- grid.arrange(csugars, cthaa, nthaa, cn, rhamnose, ncol=3, nrow=2)
 
 ggsave("fig1.png", plot=fig1,
        path= "C:/Users/rache/Downloads/work stuff/research/Philben",
