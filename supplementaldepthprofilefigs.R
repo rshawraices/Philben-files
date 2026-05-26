@@ -1,6 +1,11 @@
 ## Supplemental depth profile figures ##
 # using the bioavailpaper_revisions_fig1 code as the source code #
 
+##REFERENCES##
+#moving the legend around: https://stackoverflow.com/questions/28065604/side-by-side-horizontal-legends-in-in-ggplot2
+#common legend for combo plot: https://stackoverflow.com/questions/13649473/add-a-common-legend-for-combined-ggplots
+
+
 #---------------------------------------------------------------------------------------------------------
 install.packages("ggplot2","tidyverse")
 install.packages("lemon")
@@ -40,7 +45,7 @@ csugars <- ggplot(data=suppfigdata,
         axis.title = element_text(size=15),
         axis.text = element_text(size=14),
         axis.ticks.length = unit(-0.15,"cm"),
-        plot.margin=unit(c(0.3,0.4,0.3,0.7),"cm"))               # makes space between combined plots so no labels get cut off
+        plot.margin=unit(c(0.3,0.2,0.3,0.7),"cm"))               # makes space between combined plots so no labels get cut off
 # options(repr.plot.width = 5, repr.plot.height =2)
 
 csugars
@@ -70,7 +75,7 @@ cthaa <- ggplot(data=suppfigdata,
         axis.title = element_text(size=15),
         axis.text = element_text(size=14),
         axis.ticks.length = unit(-0.15,"cm"),
-        plot.margin=unit(c(0.3,0.5,0.3,0.5),"cm"))
+        plot.margin=unit(c(0.3,0.5,0.3,0.8),"cm"))
 
 cthaa
 
@@ -99,7 +104,7 @@ nthaa <- ggplot(data=suppfigdata,
         axis.title = element_text(size=15),
         axis.text = element_text(size=14),
         axis.ticks.length = unit(-0.15,"cm"),
-        plot.margin=unit(c(0.3,0.5,0.3,0.5),"cm"))
+        plot.margin=unit(c(0.3,0.7,0.3,0.6),"cm"))
 
 nthaa
 
@@ -128,7 +133,9 @@ cn <- ggplot(data=suppfigdata,
         axis.title = element_text(size=15),
         axis.text = element_text(size=14),
         axis.ticks.length = unit(-0.15,"cm"),
-        plot.margin=unit(c(0.3,0.5,0.5,0.5),"cm"))
+        plot.margin=unit(c(0.3,0.8,0.5,0),"cm"))
+        #plot.margin=unit(c(0.3,1,0.5,0.1),"cm"))
+       # plot.margin=unit(c(0.3,0.5,0.5,0.5),"cm"))
 
 cn
 
@@ -145,37 +152,55 @@ rhamnose <- ggplot(data=suppfigdata,
                      breaks=seq(.5,3,.5),limits=c(0,3), expand=c(0,0))+
   coord_trans(y = "reverse")+
   guides(shape = guide_legend(order=1),
-         color = guide_legend(override.aes = list(size = 3)) #makes the symbols larger
+         color = guide_legend(override.aes = list(size = 3),nrow=3,) #makes the symbols larger
   )+
   theme(panel.background = element_rect(fill = NA),
         panel.grid.major = element_line(colour = NA),
         panel.grid.minor = element_line(colour = NA),
         panel.border=element_rect(colour="black",fill=NA,linewidth=1),
         text=element_text(family = "serif"),
-        legend.position = "right", #legend.position.inside=c(.7,0.42),
+        legend.position = "inside", legend.position.inside=c(.45,0.515),
+        legend.direction = "horizontal",
+        legend.title.position = "top", 
         legend.background=element_rect(linewidth=.5,colour="black"),
-        legend.title = element_text(face="bold",size=14),
+        legend.title = element_text(face="bold",size=14, hjust=0.5),
         legend.text = element_text(size=12),
-        legend.box.just = "right",                                #centers the top legend over bottom one
+        legend.box.just = "center",                                #centers the top legend over bottom one
         axis.title = element_text(size=15),
         axis.text = element_text(size=14),
         axis.ticks.length = unit(-0.15,"cm"),
-        plot.margin=unit(c(0.3,1,0.5,0.1),"cm"))
+        plot.margin=unit(c(0.3,0,0.5,1.2),"cm"))
+
 # axis.ticks.bottom = element_line(linetype="solid",colour="black"),
 #  axis.ticks.left=element_line(linetype="solid", colour="black"))
 
 rhamnose
 
+#running it without the legend for the combo plot #
+rhamnosenoleg <- rhamnose+theme(legend.position = "none")
+rhamnosenoleg
 
+#---------------------------------------------------------------------------------------------------------
+## pulling the legend out of rhamnose and making it its own object ##
+#ref: https://stackoverflow.com/questions/13649473/add-a-common-legend-for-combined-ggplots
+
+g_legend<-function(a.gplot){
+  tmp <- ggplot_gtable(ggplot_build(a.gplot))
+  leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box")
+  legend <- tmp$grobs[[leg]]
+  return(legend)}
+
+mylegend<-g_legend(rhamnose)
+
+mylegend
 #---------------------------------------------------------------------------------------------------------
 ##Combo plot ##
 
 
-suppfig <- grid.arrange(grobs=list(csugars, cthaa, nthaa, cn, rhamnose), 
-             layout_matrix = matrix(c(1,1,2,2,3,3,NA,4,4,5,5,NA),nrow=2, byrow=T),
+suppfig <- grid.arrange(grobs=list(csugars, cthaa, nthaa, cn, rhamnosenoleg,mylegend), 
+             layout_matrix = matrix(c(1,1,2,2,3,3,NA,4,4,5,5,6),nrow=2, byrow=T),
              widths=c(0.5,0.5,0.5,0.5,0.5,0.5),
              heights=c(1,1))
- 
 
 suppfig
 
