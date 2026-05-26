@@ -4,7 +4,7 @@
 ##REFERENCES##
 #moving the legend around: https://stackoverflow.com/questions/28065604/side-by-side-horizontal-legends-in-in-ggplot2
 #common legend for combo plot: https://stackoverflow.com/questions/13649473/add-a-common-legend-for-combined-ggplots
-
+#changing the number of rows in the legend: https://stackoverflow.com/questions/44060029/how-to-control-number-of-rows-in-a-non-scale-legend-in-ggplot2
 
 #---------------------------------------------------------------------------------------------------------
 install.packages("ggplot2","tidyverse")
