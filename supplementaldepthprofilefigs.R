@@ -128,7 +128,7 @@ cn <- ggplot(data=suppfigdata,
         axis.title = element_text(size=15),
         axis.text = element_text(size=14),
         axis.ticks.length = unit(-0.15,"cm"),
-        plot.margin=unit(c(0.3,0.5,0.3,0.5),"cm"))
+        plot.margin=unit(c(0.3,0.5,0.5,0.5),"cm"))
 
 cn
 
@@ -152,7 +152,7 @@ rhamnose <- ggplot(data=suppfigdata,
         panel.grid.minor = element_line(colour = NA),
         panel.border=element_rect(colour="black",fill=NA,linewidth=1),
         text=element_text(family = "serif"),
-        legend.position = "inside", legend.position.inside=c(.7,0.42),
+        legend.position = "right", #legend.position.inside=c(.7,0.42),
         legend.background=element_rect(linewidth=.5,colour="black"),
         legend.title = element_text(face="bold",size=14),
         legend.text = element_text(size=12),
@@ -160,12 +160,11 @@ rhamnose <- ggplot(data=suppfigdata,
         axis.title = element_text(size=15),
         axis.text = element_text(size=14),
         axis.ticks.length = unit(-0.15,"cm"),
-        plot.margin=unit(c(0.3,1,0.3,0.1),"cm"))
+        plot.margin=unit(c(0.3,1,0.5,0.1),"cm"))
 # axis.ticks.bottom = element_line(linetype="solid",colour="black"),
 #  axis.ticks.left=element_line(linetype="solid", colour="black"))
 
 rhamnose
-
 
 
 #---------------------------------------------------------------------------------------------------------
