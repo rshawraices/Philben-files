@@ -124,11 +124,13 @@ ggsave("fig2test.png", plot=fig2,
 fig3data<-read.delim("C:/Users/rache/Downloads/work stuff/research/Philben/revfigs_fig3_5.20.2026.txt") #i took the pca scores and added microtopography, depth, and the sample IDs into this dataframe
 
 View(fig3data)
+is.character(fig3data$Depth.cat)
 
-fig3a <- ggplot(data=fig3data, aes(x=PC1.Scores, y=PC2.Scores,color=Depth,shape=Microtopography))+
+#making option 1 for fig 3 where both variables in same fig
+fig3op1 <- ggplot(data=fig3data, aes(x=PC1.Scores, y=PC2.Scores,color=Depth.cat,shape=Microtopography))+
   geom_point(size=2.5)+
-  labs(x="PC1 (25.3%)", y="PC2 (17.5%)")+
-  scale_x_continuous(breaks=seq(-4.5,4.5,1.5), limits=c(-4.5,4.5), expand=c(0,0)) +
+  labs(x="PC1 (25.3%)", y="PC2 (17.5%)", color="Depth")+
+  scale_x_continuous(breaks=seq(-3.0,4.5,1.5), limits=c(-4.5,4.5), expand=c(0,0)) +
   scale_y_continuous(breaks=seq(-4.5,4.5,1.5), limits=c(-4.5,4.5), expand=c(0,0))+
   geom_vline(xintercept = 0, linewidth=0.5)+
   geom_hline(yintercept = 0, linewidth=0.5)+
@@ -142,13 +144,19 @@ fig3a <- ggplot(data=fig3data, aes(x=PC1.Scores, y=PC2.Scores,color=Depth,shape=
         axis.ticks.length = unit(-0.15,"cm"),
         plot.margin=unit(c(0.5,0.5,0.5,0.5),"cm"),
         legend.text = element_text(size=12),
-        legend.title=element_text(size=14,face="bold"))
+        legend.title=element_text(size=14,face="bold", hjust=0.5),
+        legend.background=element_rect(linewidth=.5,colour="black"),
+        legend.box.just="center")
         #legend.box.background = element_rect(colour="black"),
         #legend.margin = margin(c(1.5,1,1,1.5)))
 
-fig3a
+fig3op1
 
-
+ggsave("fig3_option1.png", plot=fig3op1,
+       path= "C:/Users/rache/Downloads/work stuff/research/Philben",
+       units="in",
+       width=7,
+       height=5)
 
 
 
