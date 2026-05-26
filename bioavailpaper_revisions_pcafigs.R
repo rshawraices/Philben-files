@@ -16,7 +16,7 @@
           #https://ggplot2-book.org/annotations#sec-text-labels, https://www.statology.org/geom_label-ggplot2/
 #ggscatter: https://rpkgs.datanovia.com/ggpubr/reference/ggscatter.html
 #changing background panels/gridlines: https://www.sthda.com/english/wiki/ggplot2-themes-and-background-colors-the-3-elements#google_vignette
-
+#changing the color palettes of a fill: https://sjspielman.github.io/introverse/articles/color_fill_scales.html
 
 #----------------------------------------------------------------------------------------------------------------------------
 ##not super sure which are necessary for final code
@@ -180,7 +180,8 @@ fig3a <- ggplot(data=fig3data, aes(x=PC1.Scores, y=PC2.Scores,color=Depth.cat,sh
         legend.text = element_text(size=12),
         legend.title=element_text(size=14,face="bold", hjust=0.5),
         legend.background=element_rect(linewidth=.5,colour="black"),
-        legend.box.just="center")
+        legend.box.just="center",
+        legend.position="inside", legend.position.inside = c(0.875,0.84))
 #legend.box.background = element_rect(colour="black"),
 #legend.margin = margin(c(1.5,1,1,1.5)))
 
@@ -206,32 +207,16 @@ fig3b <- ggplot(data=fig3data, aes(x=PC1.Scores, y=PC2.Scores,color=Microtopogra
         legend.text = element_text(size=12),
         legend.title=element_text(size=14,face="bold", hjust=0.5),
         legend.background=element_rect(linewidth=.5,colour="black"),
-        legend.box.just="center")
+        legend.box.just="center",
+        legend.position="inside", legend.position.inside = c(0.83,0.84))+
+  scale_color_viridis_d(option = "viridis") #changing the color palette from fig3a so obvious which is which
+
 
 fig3b
 
-## pull out the legends
-g_legend<-function(a.gplot){
-  tmp <- ggplot_gtable(ggplot_build(a.gplot))
-  leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box")
-  legend <- tmp$grobs[[leg]]
-  return(legend)}
+## combo plot
 
-fig3aleg <- g_legend(fig3a)
-fig3bleg <- g_legend(fig3b)
-fig3anoleg <- fig3a + theme(legend.position = "none")
-fig3bnoleg <- fig3b + theme(legend.position = "none")
-
-fig3leg<-grid.arrange(fig3aleg, fig3bleg, nrow=2,heights=c(1,1))
-
-
-fig3combo <- grid.arrange(grobs=list(fig3anoleg, fig3bnoleg, fig3leg), 
-                          layout_matrix = matrix(c(1,1,1,1,2,2,2,2,NA,
-                                                   1,1,1,1,2,2,2,2,3,
-                                                   1,1,1,1,2,2,2,2,3,
-                                                   1,1,1,1,2,2,2,2,NA), nrow=4, byrow=T),
-                          widths=c(0.5,0.5,0.5,0.2,0.5,0.5,0.5,0.2,0.6),
-                          heights=c(1,1,1,1))
+fig3combo <- grid.arrange(fig3a,fig3b,ncol=2)
 
 ggsave("fig3_option2.png", plot=fig3combo,
        path= "C:/Users/rache/Downloads/work stuff/research/Philben",
