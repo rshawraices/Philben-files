@@ -163,7 +163,8 @@ ggsave("fig3_option1.png", plot=fig3op1,
 
 fig3a <- ggplot(data=fig3data, aes(x=PC1.Scores, y=PC2.Scores,color=Depth.cat,shape=Depth.cat))+
   geom_point(size=2.5)+
-  labs(x="PC1 (25.3%)", y="PC2 (17.5%)",color="Depth", shape="Depth")+
+  labs(x="PC1 (25.3%)", y="PC2 (17.5%)",color="Depth", shape="Depth",
+       tag = expression("a."))+
   scale_x_continuous(breaks=seq(-3.0,4.5,1.5), limits=c(-4.5,4.5), expand=c(0,0)) +
   scale_y_continuous(breaks=seq(-4.5,4.5,1.5), limits=c(-4.5,4.5), expand=c(0,0))+
   geom_vline(xintercept = 0, linewidth=0.5)+
@@ -181,7 +182,9 @@ fig3a <- ggplot(data=fig3data, aes(x=PC1.Scores, y=PC2.Scores,color=Depth.cat,sh
         legend.title=element_text(size=14,face="bold", hjust=0.5),
         legend.background=element_rect(linewidth=.5,colour="black"),
         legend.box.just="center",
-        legend.position="inside", legend.position.inside = c(0.875,0.84))
+        legend.position="inside", legend.position.inside = c(0.875,0.84),
+        plot.tag.position = "topleft",
+        plot.tag = element_text(size=14))
 #legend.box.background = element_rect(colour="black"),
 #legend.margin = margin(c(1.5,1,1,1.5)))
 
@@ -190,7 +193,8 @@ fig3a
 
 fig3b <- ggplot(data=fig3data, aes(x=PC1.Scores, y=PC2.Scores,color=Microtopography,shape=Microtopography))+
   geom_point(size=2.5)+
-  labs(x="PC1 (25.3%)", y="PC2 (17.5%)")+
+  labs(x="PC1 (25.3%)", y="PC2 (17.5%)",
+       tag = expression("b."))+
   scale_x_continuous(breaks=seq(-3.0,4.5,1.5), limits=c(-4.5,4.5), expand=c(0,0)) +
   scale_y_continuous(breaks=seq(-4.5,4.5,1.5), limits=c(-4.5,4.5), expand=c(0,0))+
   geom_vline(xintercept = 0, linewidth=0.5)+
@@ -208,7 +212,9 @@ fig3b <- ggplot(data=fig3data, aes(x=PC1.Scores, y=PC2.Scores,color=Microtopogra
         legend.title=element_text(size=14,face="bold", hjust=0.5),
         legend.background=element_rect(linewidth=.5,colour="black"),
         legend.box.just="center",
-        legend.position="inside", legend.position.inside = c(0.83,0.84))+
+        legend.position="inside", legend.position.inside = c(0.83,0.84),
+        plot.tag.position = "topleft",
+        plot.tag = element_text(size=14))+
   scale_color_viridis_d(option = "viridis") #changing the color palette from fig3a so obvious which is which
 
 
