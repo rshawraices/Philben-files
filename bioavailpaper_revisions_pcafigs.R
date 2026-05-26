@@ -126,7 +126,7 @@ fig3data<-read.delim("C:/Users/rache/Downloads/work stuff/research/Philben/revfi
 View(fig3data)
 is.character(fig3data$Depth.cat)
 
-#making option 1 for fig 3 where both variables in same fig
+#--making option 1 for fig 3 where both variables in same fig------
 fig3op1 <- ggplot(data=fig3data, aes(x=PC1.Scores, y=PC2.Scores,color=Depth.cat,shape=Microtopography))+
   geom_point(size=2.5)+
   labs(x="PC1 (25.3%)", y="PC2 (17.5%)", color="Depth")+
@@ -156,6 +156,87 @@ ggsave("fig3_option1.png", plot=fig3op1,
        path= "C:/Users/rache/Downloads/work stuff/research/Philben",
        units="in",
        width=7,
+       height=5)
+
+
+#--making option 2 for fig 3 where each variable has its own plot------
+
+fig3a <- ggplot(data=fig3data, aes(x=PC1.Scores, y=PC2.Scores,color=Depth.cat,shape=Depth.cat))+
+  geom_point(size=2.5)+
+  labs(x="PC1 (25.3%)", y="PC2 (17.5%)",color="Depth", shape="Depth")+
+  scale_x_continuous(breaks=seq(-3.0,4.5,1.5), limits=c(-4.5,4.5), expand=c(0,0)) +
+  scale_y_continuous(breaks=seq(-4.5,4.5,1.5), limits=c(-4.5,4.5), expand=c(0,0))+
+  geom_vline(xintercept = 0, linewidth=0.5)+
+  geom_hline(yintercept = 0, linewidth=0.5)+
+  theme(panel.background = element_rect(fill = NA),
+        panel.grid.major = element_line(colour = NA),
+        panel.grid.minor = element_line(colour = NA),
+        panel.border=element_rect(colour="black",fill=NA,linewidth=1),
+        text=element_text(family = "serif"),
+        axis.title = element_text(size=14),
+        axis.text = element_text(size=12),
+        axis.ticks.length = unit(-0.15,"cm"),
+        plot.margin=unit(c(0.5,0.5,0.5,0.5),"cm"),
+        legend.text = element_text(size=12),
+        legend.title=element_text(size=14,face="bold", hjust=0.5),
+        legend.background=element_rect(linewidth=.5,colour="black"),
+        legend.box.just="center")
+#legend.box.background = element_rect(colour="black"),
+#legend.margin = margin(c(1.5,1,1,1.5)))
+
+fig3a
+
+
+fig3b <- ggplot(data=fig3data, aes(x=PC1.Scores, y=PC2.Scores,color=Microtopography,shape=Microtopography))+
+  geom_point(size=2.5)+
+  labs(x="PC1 (25.3%)", y="PC2 (17.5%)")+
+  scale_x_continuous(breaks=seq(-3.0,4.5,1.5), limits=c(-4.5,4.5), expand=c(0,0)) +
+  scale_y_continuous(breaks=seq(-4.5,4.5,1.5), limits=c(-4.5,4.5), expand=c(0,0))+
+  geom_vline(xintercept = 0, linewidth=0.5)+
+  geom_hline(yintercept = 0, linewidth=0.5)+
+  theme(panel.background = element_rect(fill = NA),
+        panel.grid.major = element_line(colour = NA),
+        panel.grid.minor = element_line(colour = NA),
+        panel.border=element_rect(colour="black",fill=NA,linewidth=1),
+        text=element_text(family = "serif"),
+        axis.title = element_text(size=14),
+        axis.text = element_text(size=12),
+        axis.ticks.length = unit(-0.15,"cm"),
+        plot.margin=unit(c(0.5,0.5,0.5,0.5),"cm"),
+        legend.text = element_text(size=12),
+        legend.title=element_text(size=14,face="bold", hjust=0.5),
+        legend.background=element_rect(linewidth=.5,colour="black"),
+        legend.box.just="center")
+
+fig3b
+
+## pull out the legends
+g_legend<-function(a.gplot){
+  tmp <- ggplot_gtable(ggplot_build(a.gplot))
+  leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box")
+  legend <- tmp$grobs[[leg]]
+  return(legend)}
+
+fig3aleg <- g_legend(fig3a)
+fig3bleg <- g_legend(fig3b)
+fig3anoleg <- fig3a + theme(legend.position = "none")
+fig3bnoleg <- fig3b + theme(legend.position = "none")
+
+fig3leg<-grid.arrange(fig3aleg, fig3bleg, nrow=2,heights=c(1,1))
+
+
+fig3combo <- grid.arrange(grobs=list(fig3anoleg, fig3bnoleg, fig3leg), 
+                          layout_matrix = matrix(c(1,1,1,1,2,2,2,2,NA,
+                                                   1,1,1,1,2,2,2,2,3,
+                                                   1,1,1,1,2,2,2,2,3,
+                                                   1,1,1,1,2,2,2,2,NA), nrow=4, byrow=T),
+                          widths=c(0.5,0.5,0.5,0.2,0.5,0.5,0.5,0.2,0.6),
+                          heights=c(1,1,1,1))
+
+ggsave("fig3_option2.png", plot=fig3combo,
+       path= "C:/Users/rache/Downloads/work stuff/research/Philben",
+       units="in",
+       width=12.5,
        height=5)
 
 
