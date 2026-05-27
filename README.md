@@ -13,5 +13,5 @@ First paper submission code:
 - "datatablecode.R" & "AAdatatablecode" are from August & September 2025
 
 Revisions (second submission):
-- "bioavailpaper_revisions_pcafigs.R", "bioavailpaper_revisions_fig1.R", "stepwiseregressions_paperrevisions.R" & "bioavailpaper_revisions_fig4.R" are from March & April 2026
+- "bioavailpaper_revisions_pcafigs.R", "bioavailpaper_revisions_fig1.R", "stepwiseregressions_paperrevisions.R", "bioavailpaper_revisions_fig4.R" & "supplementaldepthprofilefigs.R" are from March - May 2026
 - "test" is the file used for setting up and linking to GitHub, also has all the references
