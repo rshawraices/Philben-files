@@ -46,7 +46,7 @@ csugars <- ggplot(data=suppfigdata,
         axis.title = element_text(size=15),
         axis.text = element_text(size=14),
         axis.ticks.length = unit(-0.15,"cm"),
-        plot.margin=unit(c(0.3,0.1,0.3,0.7),"cm"),               # makes space between combined plots so no labels get cut off
+        plot.margin=unit(c(0.3,0.2,0.3,0.7),"cm"),               # makes space between combined plots so no labels get cut off
         plot.tag.position = "topleft",
         plot.tag = element_text(size=14))
         # options(repr.plot.width = 5, repr.plot.height =2)

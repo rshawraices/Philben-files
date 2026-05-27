@@ -52,7 +52,7 @@ fig4a <- ggplot(data=fig4data,
         axis.title = element_text(size=14),
         axis.text = element_text(size=12),
         axis.ticks.length = unit(-0.15,"cm"),
-        plot.margin=unit(c(1,0.2,1,0.5),"cm"),
+        plot.margin=unit(c(1,0.3,1,0.4),"cm"),
         plot.tag.position = "topleft",
         plot.tag = element_text(size=14))+
   geom_text(x=330,y=80,
