@@ -46,7 +46,7 @@ csugars <- ggplot(data=suppfigdata,
         axis.title = element_text(size=15),
         axis.text = element_text(size=14),
         axis.ticks.length = unit(-0.15,"cm"),
-        plot.margin=unit(c(0.3,0.2,0.3,0.7),"cm"),               # makes space between combined plots so no labels get cut off
+        plot.margin=unit(c(0.3,0.1,0.3,0.7),"cm"),               # makes space between combined plots so no labels get cut off
         plot.tag.position = "topleft",
         plot.tag = element_text(size=14))
         # options(repr.plot.width = 5, repr.plot.height =2)
@@ -79,7 +79,7 @@ cthaa <- ggplot(data=suppfigdata,
         axis.title = element_text(size=15),
         axis.text = element_text(size=14),
         axis.ticks.length = unit(-0.15,"cm"),
-        plot.margin=unit(c(0.3,0.5,0.3,0.8),"cm"),
+        plot.margin=unit(c(0.3,0.6,0.3,0.7),"cm"),
         plot.tag.position = "topleft",
         plot.tag = element_text(size=14))
 
@@ -112,7 +112,7 @@ nthaa <- ggplot(data=suppfigdata,
         axis.title = element_text(size=15),
         axis.text = element_text(size=14),
         axis.ticks.length = unit(-0.15,"cm"),
-        plot.margin=unit(c(0.3,0.7,0.3,0.6),"cm"),
+        plot.margin=unit(c(0.3,0.7,0.3,0.1),"cm"),
         plot.tag.position = "topleft",
         plot.tag = element_text(size=14))
 
@@ -145,7 +145,7 @@ cn <- ggplot(data=suppfigdata,
         axis.title = element_text(size=15),
         axis.text = element_text(size=14),
         axis.ticks.length = unit(-0.15,"cm"),
-        plot.margin=unit(c(0.3,0.8,0.5,0),"cm"),
+        plot.margin=unit(c(0.3,0.2,0.5,0),"cm"),
         plot.tag.position = "topleft",
         plot.tag = element_text(size=14))
 
@@ -175,7 +175,7 @@ rhamnose <- ggplot(data=suppfigdata,
         panel.grid.minor = element_line(colour = NA),
         panel.border=element_rect(colour="black",fill=NA,linewidth=1),
         text=element_text(family = "serif"),
-        legend.position = "inside", legend.position.inside=c(.45,0.515),
+        legend.position = "inside", legend.position.inside=c(.45,0.45),
         legend.direction = "horizontal",
         legend.title.position = "top", 
         legend.background=element_rect(linewidth=.5,colour="black"),
@@ -217,8 +217,9 @@ mylegend
 
 
 suppfig <- grid.arrange(grobs=list(csugars, cthaa, nthaa, cn, rhamnosenoleg,mylegend), 
-             layout_matrix = matrix(c(1,1,2,2,3,3,NA,4,4,5,5,6),nrow=2, byrow=T),
-             widths=c(0.5,0.5,0.5,0.5,0.5,0.5),
+             layout_matrix = matrix(c(1,1,2,2,3,3,
+                                      NA,4,4,5,5,6),nrow=2, byrow=T),
+             widths=c(0.5,0.5,0.5,0.5,0.5,0.4),
              heights=c(1,1))
 
 suppfig
@@ -227,5 +228,5 @@ ggsave("suppfig527.png", plot=suppfig,
        path= "C:/Users/rache/Downloads/work stuff/research/Philben",
        units="in",
        width=12.5,
-       height=5.5)
+       height=9)
 
