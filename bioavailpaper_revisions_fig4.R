@@ -25,11 +25,13 @@ View(fig4data)
 fig4a <- ggplot(data=fig4data,
                 aes(x=Exp..Aerob.CO2,y=Pred..Aerob.CO2,colour = Microtopography, shape = Microtopography))+
   geom_point(size=3)+
-  labs(x="Experimental Aerobic CO"[2]~" ",y=expression("Predicted Aerobic CO" [2]~ " (μmol gdw"^-1~" day"^-1~")"),
-       caption= expression("(μmol gdw"^-1~"day"^-1~")"))+
+  labs(x=expression(atop("Experimental Aerobic CO"[2]~" ",paste("(μmol gdw"^-1~"day"^-1~")"))),
+       y=expression(atop("Predicted Aerobic CO"[2]~ " ", paste("(μmol gdw"^-1~" day"^-1~")"))),
+      # caption= expression("(μmol gdw"^-1~"day"^-1~")"),
+       tag=expression("a."))+
   expand_limits(x = 0, y = 0)+
   scale_x_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
-                     breaks=seq(0,450,75), limits=c(0,450),expand=c(0,0)) +
+                     breaks=seq(75,450,75), limits=c(0,450),expand=c(0,0)) +
   scale_y_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
                      breaks=seq(0,450,75),limits=c(0,450), expand=c(0,0)) +
  # coord_trans(y = "reverse")+
@@ -39,17 +41,19 @@ fig4a <- ggplot(data=fig4data,
         panel.grid.minor = element_line(colour = NA),
         panel.border=element_rect(colour="black",fill=NA,linewidth=1),
         text=element_text(family = "serif"),
-        legend.position = "inside", legend.position.inside=c(.275,0.813),
+        legend.position = "inside", legend.position.inside=c(.28,0.813),
         legend.background=element_rect(linewidth=.5,colour="black"),
-        legend.title = element_text(face="bold",size=13),
-        legend.text = element_text(size=12),
+        legend.title = element_text(face="bold",size=11.5),
+        legend.text = element_text(size=10.5),
         legend.box.just = "left",
         axis.title = element_text(size=14),
         axis.text = element_text(size=12),
         axis.ticks.length = unit(-0.15,"cm"),
-        plot.margin=unit(c(1,0.3,1,0.5),"cm"),
-        plot.caption.position = "plot",                                ##this is the units line
-        plot.caption = element_text(hjust = 0.6, size=14))+                     ##centering the units
+        plot.margin=unit(c(1,0.2,1,0.5),"cm"),
+        plot.tag.position = "topleft",
+        plot.tag = element_text(size=14))+
+      #  plot.caption.position = "plot",                                ##this is the units line
+       # plot.caption = element_text(hjust = 0.6, size=14))+                     ##centering the units
  geom_line(aes(x=line.1, y=line),color="black") #adds the line
   
 
@@ -60,11 +64,13 @@ fig4a
 fig4b <- ggplot(data=fig4data,
                 aes(x=Exp..Anaerob.CO2,y=Pred..Anaerob.CO2,colour = Microtopography, shape = Microtopography))+
   geom_point(size=3)+
-  labs(x="Experimental Anaerobic CO"[2]~ " ",y=expression("Predicted Anaerobic CO" [2]~ " (μmol gdw"^-1~" day"^-1~")"),
-      caption=expression("(μmol gdw"^-1~" day"^-1~")"))+
+  labs(x=expression(atop("Experimental Anaerobic CO"[2]~ " ",paste("(μmol gdw"^-1~" day"^-1~")"))),
+       y=expression(atop("Predicted Anaerobic CO" [2]~ " ", paste("(μmol gdw"^-1~" day"^-1~")"))),
+    #  caption=expression("(μmol gdw"^-1~" day"^-1~")"),
+      tag=expression("b."))+
   expand_limits(x = 0, y = 0)+
   scale_x_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
-                     breaks=seq(0,2.5,.5), limits=c(0,2.5),expand=c(0,0)) +
+                     breaks=seq(0.5,2.5,.5), limits=c(0,2.5),expand=c(0,0)) +
   scale_y_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
                      breaks=seq(0,2.5,.5),limits=c(0,2.5), expand=c(0,0)) +
   # coord_trans(y = "reverse")+
@@ -81,9 +87,11 @@ fig4b <- ggplot(data=fig4data,
         axis.title = element_text(size=14),
         axis.text = element_text(size=12),
         axis.ticks.length = unit(-0.15,"cm"),
-        plot.margin=unit(c(1,0.25,1,0.25),"cm"),
-        plot.caption.position = "plot",                                ##this is the units line
-        plot.caption = element_text(hjust = 0.6, size=14))+ 
+        plot.margin=unit(c(1,0.3,1,0.3),"cm"),
+        plot.tag.position = "topleft",
+        plot.tag = element_text(size=14))+
+     #   plot.caption.position = "plot",                                ##this is the units line
+      #  plot.caption = element_text(hjust = 0.6, size=14))+ 
   geom_line(aes(x=line, y=line.1),color="black")
 
 
@@ -94,11 +102,13 @@ fig4b
 fig4c <- ggplot(data=fig4data,
                 aes(x=Exp..CH4,y=Pred..CH4,colour = Microtopography, shape = Microtopography))+
   geom_point(size=3)+
-  labs(x="Experimental CH"[4]~ " ",y=expression("Predicted CH" [4]~ " (nmol gdw"^-1~" day"^-1~")"),
-       caption= expression("(nmol gdw"^-1~" day"^-1~")"))+
+  labs(x=expression(atop("Experimental CH"[4]~ " ", paste("(nmol gdw"^-1~" day"^-1~")"))),
+       y=expression(atop("Predicted CH" [4]~ " ", paste("(nmol gdw"^-1~" day"^-1~")"))),
+     #  caption= expression("(nmol gdw"^-1~" day"^-1~")"),
+       tag=expression("c."))+
   expand_limits(x = 0, y = 0)+
   scale_x_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
-                     breaks=seq(0,480,80), limits=c(0,480),expand=c(0,0)) +
+                     breaks=seq(80,480,80), limits=c(0,480),expand=c(0,0)) +
   scale_y_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
                      breaks=seq(0,480,80),limits=c(0,480), expand=c(0,0))+
   # coord_trans(y = "reverse")+
@@ -116,9 +126,11 @@ fig4c <- ggplot(data=fig4data,
         axis.title = element_text(size=14),
         axis.text = element_text(size=12),
         axis.ticks.length = unit(-0.15,"cm"),
-        plot.margin=unit(c(1,0.5,1,0.3),"cm"),
-        plot.caption.position = "plot",                                ##this is the units line
-        plot.caption = element_text(hjust = 0.62, size=14))+ 
+        plot.margin=unit(c(1,0.7,1,0),"cm"),
+        plot.tag.position = "topleft",
+        plot.tag = element_text(size=14))+
+      #  plot.caption.position = "plot",                                ##this is the units line
+       # plot.caption = element_text(hjust = 0.62, size=14))+ 
   geom_line(aes(x=line, y=line.1),color="black")
 
 fig4c
@@ -126,18 +138,18 @@ fig4c
 #now making the inset plot
 
 inset.plot <- fig4c + 
-              labs(x=NULL, y=NULL, caption=NULL) + 
+              labs(x=NULL, y=NULL, caption=NULL,tag=NULL) + 
               theme(legend.position = "none",
                     plot.margin=unit(c(0,0,0,0),"cm"))+
               scale_x_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
-                                breaks=seq(0,80,40), limits=c(0,80),expand=c(0,0)) +
+                                breaks=seq(40,80,40), limits=c(0,80),expand=c(0,0)) +
               scale_y_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
                                 breaks=seq(0,80,40),limits=c(0,80), expand=c(0,0))
 #put them together
 fig4c_inset <-
   ggdraw() +
   draw_plot(fig4c) +
-  draw_plot(inset.plot, x = 0.185, y = .61, width = .38, height = .28)
+  draw_plot(inset.plot, x = 0.25, y = .61, width = .36, height = .26)
 
 fig4c_inset
 
@@ -145,7 +157,7 @@ fig4c_inset
 #all together
 fig4 <- grid.arrange(fig4a, fig4b, fig4c_inset, ncol=3)
 
-ggsave("fig4final.png", plot=fig4,
+ggsave("fig4_527.png", plot=fig4,
        path= "C:/Users/rache/Downloads/work stuff/research/Philben",
        units="in",
        width=12,
