@@ -25,7 +25,8 @@ View(suppfigdata)
 csugars <- ggplot(data=suppfigdata,
                 aes(x=X.CasSugars,y=Depth,colour = Microtopography, shape=Core))+
   geom_point(size=3)+
-  labs(x="% C as Sugars",y="Depth (m)")+
+  labs(x="% C as Sugars",y="Depth (m)",
+       tag=expression("a."))+
   expand_limits(x = 0, y = 0)+
   scale_x_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),    #putting tick marks on opp side w/o labels
                      position = "top", breaks=seq(0,15,5), limits=c(0,15),expand=c(0,0)) +
@@ -45,8 +46,10 @@ csugars <- ggplot(data=suppfigdata,
         axis.title = element_text(size=15),
         axis.text = element_text(size=14),
         axis.ticks.length = unit(-0.15,"cm"),
-        plot.margin=unit(c(0.3,0.2,0.3,0.7),"cm"))               # makes space between combined plots so no labels get cut off
-# options(repr.plot.width = 5, repr.plot.height =2)
+        plot.margin=unit(c(0.3,0.2,0.3,0.7),"cm"),               # makes space between combined plots so no labels get cut off
+        plot.tag.position = "topleft",
+        plot.tag = element_text(size=14))
+        # options(repr.plot.width = 5, repr.plot.height =2)
 
 csugars
 
@@ -55,7 +58,8 @@ csugars
 cthaa <- ggplot(data=suppfigdata,
                 aes(x=X..CasAA,y=Depth,colour = Microtopography, shape=Core))+
   geom_point(size=3)+
-  labs(x="% C as THAA", y=NULL)+
+  labs(x="% C as THAA", y=NULL,
+       tag=expression("b."))+
   expand_limits(x = 0, y = 0)+
   scale_x_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
                      position = "top", breaks=seq(0,15,5), limits=c(0,15),expand=c(0,0)) +
@@ -75,7 +79,10 @@ cthaa <- ggplot(data=suppfigdata,
         axis.title = element_text(size=15),
         axis.text = element_text(size=14),
         axis.ticks.length = unit(-0.15,"cm"),
-        plot.margin=unit(c(0.3,0.5,0.3,0.8),"cm"))
+        plot.margin=unit(c(0.3,0.5,0.3,0.8),"cm"),
+        plot.tag.position = "topleft",
+        plot.tag = element_text(size=14))
+
 
 cthaa
 
@@ -84,7 +91,8 @@ cthaa
 nthaa <- ggplot(data=suppfigdata,
                 aes(x=X..NasAA,y=Depth,colour = Microtopography, shape=Core))+
   geom_point(size=3)+
-  labs(x="% N as THAA", y=NULL)+
+  labs(x="% N as THAA", y=NULL,
+       tag=expression("c."))+
   expand_limits(x = 0, y = 0)+
   scale_x_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
                      position = "top", breaks=seq(0,70,10), limits=c(0,70),expand=c(0,0)) +
@@ -104,7 +112,10 @@ nthaa <- ggplot(data=suppfigdata,
         axis.title = element_text(size=15),
         axis.text = element_text(size=14),
         axis.ticks.length = unit(-0.15,"cm"),
-        plot.margin=unit(c(0.3,0.7,0.3,0.6),"cm"))
+        plot.margin=unit(c(0.3,0.7,0.3,0.6),"cm"),
+        plot.tag.position = "topleft",
+        plot.tag = element_text(size=14))
+
 
 nthaa
 
@@ -113,7 +124,8 @@ nthaa
 cn <- ggplot(data=suppfigdata,
                 aes(x=C.N, y=Depth,colour = Microtopography, shape=Core))+
   geom_point(size=3)+
-  labs(x="C:N", y= "Depth (m)")+
+  labs(x="C:N", y= "Depth (m)",
+       tag=expression("d."))+
   expand_limits(x = 0, y = 0)+
   scale_x_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
                      position = "top", breaks=seq(0,25,5), limits=c(0,25),expand=c(0,0)) +
@@ -133,7 +145,10 @@ cn <- ggplot(data=suppfigdata,
         axis.title = element_text(size=15),
         axis.text = element_text(size=14),
         axis.ticks.length = unit(-0.15,"cm"),
-        plot.margin=unit(c(0.3,0.8,0.5,0),"cm"))
+        plot.margin=unit(c(0.3,0.8,0.5,0),"cm"),
+        plot.tag.position = "topleft",
+        plot.tag = element_text(size=14))
+
         #plot.margin=unit(c(0.3,1,0.5,0.1),"cm"))
        # plot.margin=unit(c(0.3,0.5,0.5,0.5),"cm"))
 
@@ -144,7 +159,8 @@ cn
 rhamnose <- ggplot(data=suppfigdata,
                 aes(x=X.Rhamnose,y=Depth,colour = Microtopography, shape= Core))+
   geom_point(size=3)+
-  labs(x="% Rhamnose", y=NULL)+
+  labs(x="% Rhamnose", y=NULL,
+       tag=expression("e."))+
   expand_limits(x = 0, y = 0)+
   scale_x_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
                      position = "top", breaks=seq(0,20,4), limits=c(0,20), expand=c(0,0)) +
@@ -169,7 +185,10 @@ rhamnose <- ggplot(data=suppfigdata,
         axis.title = element_text(size=15),
         axis.text = element_text(size=14),
         axis.ticks.length = unit(-0.15,"cm"),
-        plot.margin=unit(c(0.3,0,0.5,1.2),"cm"))
+        plot.margin=unit(c(0.3,0.6,0.5,0.6),"cm"),
+        plot.tag.position = "topleft",
+        plot.tag = element_text(size=14))
+
 
 # axis.ticks.bottom = element_line(linetype="solid",colour="black"),
 #  axis.ticks.left=element_line(linetype="solid", colour="black"))
@@ -204,7 +223,7 @@ suppfig <- grid.arrange(grobs=list(csugars, cthaa, nthaa, cn, rhamnosenoleg,myle
 
 suppfig
 
-ggsave("suppfig.png", plot=suppfig,
+ggsave("suppfig527.png", plot=suppfig,
        path= "C:/Users/rache/Downloads/work stuff/research/Philben",
        units="in",
        width=12.5,
