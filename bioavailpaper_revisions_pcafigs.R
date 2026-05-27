@@ -88,7 +88,7 @@ loadings
 
 fig2 <- ggplot(data = loadings, aes(x=PC1, y=PC2)) +
   labs(x="PC1 (25.3%)", y="PC2 (17.5%)")+
-  scale_x_continuous(breaks=seq(-0.6,0.6,0.3), limits=c(-0.6,0.6), expand=c(0,0)) +
+  scale_x_continuous(breaks=seq(-0.3,0.6,0.3), limits=c(-0.6,0.6), expand=c(0,0)) +
   scale_y_continuous(breaks=seq(-0.6,0.6,0.3), limits=c(-0.6,0.6), expand=c(0,0))+
   geom_segment(data = loadings, aes(x=0, y=0, xend=PC1, yend=PC2),
                arrow = arrow(length = unit(0.2, "cm")), color = "black", linewidth=0.3) +
