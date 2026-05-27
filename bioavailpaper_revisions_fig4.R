@@ -7,6 +7,9 @@
 #captions and subtitles: https://r-charts.com/ggplot2/titles/
 #titles in ggplot: https://r-graph-gallery.com/289-control-ggplot2-title.html
 #calculating rmse in excel: https://www.statology.org/root-mean-square-error-excel/
+#adding textboxes with formatting: https://wilkelab.org/ggtext/reference/geom_textbox.html,
+#adding annotations with minimal formatting: https://ggplot2.tidyverse.org/reference/annotate.html, 
+    #https://stackoverflow.com/questions/44012554/r-how-can-i-annotate-a-ggplot-with-a-text-box
            
    
 #---------------------------------------------------------------------------------------------------------
@@ -27,7 +30,7 @@ fig4a <- ggplot(data=fig4data,
   geom_point(size=3)+
   labs(x=expression(atop("Experimental Aerobic CO"[2]~" ",paste("(μmol gdw"^-1~"day"^-1~")"))),
        y=expression(atop("Predicted Aerobic CO"[2]~ " ", paste("(μmol gdw"^-1~" day"^-1~")"))),
-      # caption= expression("(μmol gdw"^-1~"day"^-1~")"),
+     #  caption= expression("R"^2~"=0.66"),
        tag=expression("a."))+
   expand_limits(x = 0, y = 0)+
   scale_x_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
@@ -52,8 +55,9 @@ fig4a <- ggplot(data=fig4data,
         plot.margin=unit(c(1,0.2,1,0.5),"cm"),
         plot.tag.position = "topleft",
         plot.tag = element_text(size=14))+
-      #  plot.caption.position = "plot",                                ##this is the units line
-       # plot.caption = element_text(hjust = 0.6, size=14))+                     ##centering the units
+  geom_text(x=330,y=80,
+            label=expression(atop("R"^2~"=0.66",paste("RMSE=47.83"))), 
+            color="black", family="serif", size=12, size.unit="pt")+
  geom_line(aes(x=line.1, y=line),color="black") #adds the line
   
 
@@ -92,6 +96,9 @@ fig4b <- ggplot(data=fig4data,
         plot.tag = element_text(size=14))+
      #   plot.caption.position = "plot",                                ##this is the units line
       #  plot.caption = element_text(hjust = 0.6, size=14))+ 
+  geom_text(x=2.0,y=0.45,
+            label=expression(atop("R"^2~"=0.39",paste("RMSE=0.26"))), 
+            color="black", family="serif", size=12, size.unit="pt")+
   geom_line(aes(x=line, y=line.1),color="black")
 
 
@@ -131,6 +138,9 @@ fig4c <- ggplot(data=fig4data,
         plot.tag = element_text(size=14))+
       #  plot.caption.position = "plot",                                ##this is the units line
        # plot.caption = element_text(hjust = 0.62, size=14))+ 
+  geom_text(x=375,y=140,
+            label=expression(atop("R"^2~"=0.49",paste("RMSE=98.72"))), 
+            color="black", family="serif", size=12, size.unit="pt")+
   geom_line(aes(x=line, y=line.1),color="black")
 
 fig4c
