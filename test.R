@@ -9,6 +9,9 @@
     #https://happygitwithr.com/install-git.html,
     #https://www.geeksforgeeks.org/r-language/link-your-github-account-with-r-studio/,
     #https://docs.posit.co/ide/user/ide/guide/tools/version-control.html
+## installing homebrew to then install git on mac
+    #for homebrew: https://www.geeksforgeeks.org/installation-guide/homebrew-installation-on-macos/
+    #for git: https://www.geeksforgeeks.org/installation-guide/how-to-install-git-on-mac/
 
 ##NOTES##
 # when setting up/figuring out github stuff I made a project folder in R called "Philben" that I wasn't able to link to github - now obsolete
@@ -31,4 +34,8 @@ gitcreds_set() #use this to link new PAT
 use_git()
 use_github()
 
-##test test       
+##test test     
+
+## installing homebrew to then install git on mac
+#for homebrew: https://www.geeksforgeeks.org/installation-guide/homebrew-installation-on-macos/
+#for git: https://www.geeksforgeeks.org/installation-guide/how-to-install-git-on-mac/
