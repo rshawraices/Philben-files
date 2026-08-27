@@ -35,7 +35,3 @@ use_git()
 use_github()
 
 ##test test     
-
-## installing homebrew to then install git on mac
-#for homebrew: https://www.geeksforgeeks.org/installation-guide/homebrew-installation-on-macos/
-#for git: https://www.geeksforgeeks.org/installation-guide/how-to-install-git-on-mac/
