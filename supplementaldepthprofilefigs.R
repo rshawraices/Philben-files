@@ -224,7 +224,7 @@ suppfig <- grid.arrange(grobs=list(csugars, cthaa, nthaa, cn, rhamnosenoleg,myle
 
 suppfig
 
-ggsave("suppfig_tiff.png", plot=suppfig,
+ggsave("suppfig.tiff", plot=suppfig,
        path= "C:/Users/rache/Downloads/work stuff/research/Philben",
        units="in",
        width=12.5,
