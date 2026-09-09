@@ -167,10 +167,12 @@ fig4c_inset
 #all together
 fig4 <- grid.arrange(fig4a, fig4b, fig4c_inset, ncol=3)
 
-ggsave("fig4_527.png", plot=fig4,
+ggsave("fig4_tiff.png", plot=fig4,
        path= "C:/Users/rache/Downloads/work stuff/research/Philben",
        units="in",
        width=12,
-       height=5)
+       height=5,
+       device="tiff",
+       dpi=600)
 
 #export with width=1100 and height = 500

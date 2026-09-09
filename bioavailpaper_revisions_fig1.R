@@ -19,6 +19,7 @@
 #overlaying multiple plots: https://stackoverflow.com/questions/40297206/overlaying-two-plots-using-ggplot2-in-r
 #margins between multiple plots: https://stackoverflow.com/questions/15556068/removing-all-the-space-between-two-ggplots-combined-with-grid-arrange
 #having multi-lined axis titles with subscripts/superscripts: https://stackoverflow.com/questions/13223846/ggplot2-two-line-label-with-expression
+#making a high resolution tiff image: https://stackoverflow.com/questions/38907514/save-a-high-resolution-image
 
 #---------------------------------------------------------------------------------------------------------
 install.packages("ggplot2","tidyverse")
@@ -147,11 +148,13 @@ fig1c
 
 fig1 <- grid.arrange(fig1a, fig1b, fig1c, ncol=3)
 
-ggsave("fig1_527.png", plot=fig1,
+ggsave("fig1_tiff.png", plot=fig1,
        path= "C:/Users/rache/Downloads/work stuff/research/Philben",
        units="in",
        width=12.5,
-       height=5.5)
+       height=5.5,
+       device="tiff", #made it more high resolution
+       dpi=600)
 
 #export with width=1100 and height = 500
 
