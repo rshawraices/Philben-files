@@ -112,12 +112,12 @@ fig2 <- ggplot(data = loadings, aes(x=PC1, y=PC2)) +
 
 fig2
 
-ggsave("fig2.tiff", plot=fig2,
+ggsave("fig2.pdf", plot=fig2,
        path= "C:/Users/rache/Downloads/work stuff/research/Philben",
        units="in",
        width=5,
        height=5,
-       device="tiff",
+       device="pdf",
        dpi=600)
 
 
@@ -226,12 +226,12 @@ fig3b
 
 fig3combo <- grid.arrange(fig3a,fig3b,ncol=2)
 
-ggsave("fig3.tiff", plot=fig3combo,
+ggsave("fig3.pdf", plot=fig3combo,
        path= "C:/Users/rache/Downloads/work stuff/research/Philben",
        units="in",
        width=12.5,
        height=5,
-       device="tiff",
+       device="pdf",
        dpi=600)
 
 
