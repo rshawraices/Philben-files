@@ -19,5 +19,5 @@ Revisions (second submission):
 Published code:
 - "Shaw et al Organic matter quality and greenhouse... figures.R" combines the "bioavailpaper_revisions_pcafigs.R", "bioavailpaper_revisions_fig1.R","bioavailpaper_revisions_fig4.R", and "supplementaldepthprofilefigs.R" scripts
     - scripts were edited to have limited commentary, redundancies, and old code (publication-ready) in November 2026
-- "Shaw et al Organic matter quality and greenhouse... multiple regressions.R" cleans up the "stepwiseregressions_paperrevisions.R" script to only have the log-transformed GHG, stepwise multiple regressions code
+- "Shaw et al Organic matter quality and greenhouse... statistics.R" cleans up the "stepwiseregressions_paperrevisions.R" and "Peatbioavail_ANOVAs.R" scripts to only have the log-transformed GHG, stepwise multiple regressions code and the two-way ANOVA and Tukey's posthoc test code actually used
     - scripts were similarly edited to minimize commentary, redundancies, and old code to be "publication-ready" in November 2026
