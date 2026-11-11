@@ -15,3 +15,9 @@ First paper submission code:
 Revisions (second submission):
 - "bioavailpaper_revisions_pcafigs.R", "bioavailpaper_revisions_fig1.R", "stepwiseregressions_paperrevisions.R", "bioavailpaper_revisions_fig4.R" & "supplementaldepthprofilefigs.R" are from March - May 2026
 - "test" is the file used for setting up and linking to GitHub, also has all the references
+
+Published code:
+- "Shaw et al Organic matter quality and greenhouse... figures.R" combines the "bioavailpaper_revisions_pcafigs.R", "bioavailpaper_revisions_fig1.R","bioavailpaper_revisions_fig4.R", and "supplementaldepthprofilefigs.R" scripts
+    - scripts were edited to have limited commentary, redundancies, and old code (publication-ready) in November 2026
+- "Shaw et al Organic matter quality and greenhouse... multiple regressions.R" cleans up the "stepwiseregressions_paperrevisions.R" script to only have the log-transformed GHG, stepwise multiple regressions code
+    - scripts were similarly edited to minimize commentary, redundancies, and old code to be "publication-ready" in November 2026
