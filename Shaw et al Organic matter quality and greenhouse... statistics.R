@@ -56,3 +56,34 @@ initial_modelCH4
 stepwise_CH4 <- step(initial_modelCH4, direction = "both")
 summary(stepwise_CH4)
 
+
+
+
+
+### ANOVAs and Tukey's post-hoc test for depth and microtopography effects on GHG
+
+library(ggplot2)
+library(ggpubr)
+library(tidyverse)
+library(broom)
+library(AICcmodavg)
+
+GHGdata<-read.csv(".csv file path", header = TRUE, colClasses = c("numeric", "factor","numeric","numeric","numeric","factor"))
+
+two.way.anaCO2 <- aov(Anaerobic_CO2 ~ Depth+Microtopography, data = GHGdata)
+summary(two.way.anaCO2)
+
+two.way.aerCO2 <- aov(Aerobic_CO2 ~ Depth*Microtopography, data = GHGdata)
+summary(two.way.aerCO2)
+
+two.way.methane <- aov(CH4 ~ Depth*Microtopography, data = GHGdata)
+summary(two.way.methane)
+
+
+# Tukey's post-hoc test
+
+TukeyHSD(two.way.anaCO2)
+TukeyHSD(two.way.aerCO2)
+TukeyHSD(two.way.methane)
+
+
