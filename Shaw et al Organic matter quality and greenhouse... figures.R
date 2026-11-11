@@ -272,7 +272,7 @@ ggsave("fig3.pdf", plot=fig3combo,
 
 
 
-### Figure 4
+### Figure 4 - Predicted vs. observed greenhouse gas production
 
 library(ggplot2)
 library(tidyverse)
@@ -283,3 +283,139 @@ library(cowplot)
 fig4data <- read.delim(".txt file path")
 
 # Fig. 4a - Predicted vs. experimental aerobic CO2 
+
+fig4a <- ggplot(data=fig4data,
+                aes(x=Exp..Aerob.CO2,y=Pred..Aerob.CO2,colour = Microtopography, shape = Microtopography))+
+  geom_point(size=3)+
+  labs(x=expression(atop("Experimental Aerobic CO"[2]~" ",paste("(μmol gdw"^-1~"day"^-1~")"))),
+       y=expression(atop("Predicted Aerobic CO"[2]~ " ", paste("(μmol gdw"^-1~" day"^-1~")"))),
+       #  caption= expression("R"^2~"=0.66"),
+       tag=expression("a."))+
+  expand_limits(x = 0, y = 0)+
+  scale_x_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
+                     breaks=seq(75,450,75), limits=c(0,450),expand=c(0,0)) +
+  scale_y_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
+                     breaks=seq(0,450,75),limits=c(0,450), expand=c(0,0)) +
+  guides(color = guide_legend(override.aes = list(size = 5)))+
+  theme(panel.background = element_rect(fill = NA),
+        panel.grid.major = element_line(colour = NA),
+        panel.grid.minor = element_line(colour = NA),
+        panel.border=element_rect(colour="black",fill=NA,linewidth=1),
+        text=element_text(family = "serif"),
+        legend.position = "inside", legend.position.inside=c(.28,0.813),
+        legend.background=element_rect(linewidth=.5,colour="black"),
+        legend.title = element_text(face="bold",size=11.5),
+        legend.text = element_text(size=10.5),
+        legend.box.just = "left",
+        axis.title = element_text(size=14),
+        axis.text = element_text(size=12),
+        axis.ticks.length = unit(-0.15,"cm"),
+        plot.margin=unit(c(1,0.3,1,0.4),"cm"),
+        plot.tag.position = "topleft",
+        plot.tag = element_text(size=14))+
+  geom_text(x=330,y=80,
+            label=expression(atop("R"^2~"=0.66",paste("RMSE=47.83"))), 
+            color="black", family="serif", size=12, size.unit="pt")+
+  geom_line(aes(x=line.1, y=line),color="black")
+
+
+fig4a
+
+# Fig. 4b - Predicted vs. experimental anaerobic CO2
+
+fig4b <- ggplot(data=fig4data,
+                aes(x=Exp..Anaerob.CO2,y=Pred..Anaerob.CO2,colour = Microtopography, shape = Microtopography))+
+  geom_point(size=3)+
+  labs(x=expression(atop("Experimental Anaerobic CO"[2]~ " ",paste("(μmol gdw"^-1~" day"^-1~")"))),
+       y=expression(atop("Predicted Anaerobic CO" [2]~ " ", paste("(μmol gdw"^-1~" day"^-1~")"))),
+       tag=expression("b."))+
+  expand_limits(x = 0, y = 0)+
+  scale_x_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
+                     breaks=seq(0.5,2.5,.5), limits=c(0,2.5),expand=c(0,0)) +
+  scale_y_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
+                     breaks=seq(0,2.5,.5),limits=c(0,2.5), expand=c(0,0)) +
+  guides(color = guide_legend(override.aes = list(size = 5)))+
+  theme(panel.background = element_rect(fill = NA),
+        panel.grid.major = element_line(colour = NA),
+        panel.grid.minor = element_line(colour = NA),
+        panel.border=element_rect(colour="black",fill=NA,linewidth=1),
+        text=element_text(family = "serif"),
+        legend.position = "none",
+        axis.title = element_text(size=14),
+        axis.text = element_text(size=12),
+        axis.ticks.length = unit(-0.15,"cm"),
+        plot.margin=unit(c(1,0.3,1,0.3),"cm"),
+        plot.tag.position = "topleft",
+        plot.tag = element_text(size=14))+
+  geom_text(x=2.0,y=0.45,
+            label=expression(atop("R"^2~"=0.39",paste("RMSE=0.26"))), 
+            color="black", family="serif", size=12, size.unit="pt")+
+  geom_line(aes(x=line, y=line.1),color="black")
+
+
+fig4b
+
+# Fig. 4c - Predicted vs. experimental CH4
+
+fig4c <- ggplot(data=fig4data,
+                aes(x=Exp..CH4,y=Pred..CH4,colour = Microtopography, shape = Microtopography))+
+  geom_point(size=3)+
+  labs(x=expression(atop("Experimental CH"[4]~ " ", paste("(nmol gdw"^-1~" day"^-1~")"))),
+       y=expression(atop("Predicted CH" [4]~ " ", paste("(nmol gdw"^-1~" day"^-1~")"))),
+       tag=expression("c."))+
+  expand_limits(x = 0, y = 0)+
+  scale_x_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
+                     breaks=seq(80,480,80), limits=c(0,480),expand=c(0,0)) +
+  scale_y_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
+                     breaks=seq(0,480,80),limits=c(0,480), expand=c(0,0))+
+  guides(color = guide_legend(override.aes = list(size = 5)))+
+  theme(panel.background = element_rect(fill = NA),
+        panel.grid.major = element_line(colour = NA),
+        panel.grid.minor = element_line(colour = NA),
+        panel.border=element_rect(colour="black",fill=NA,linewidth=1),
+        text=element_text(family = "serif"),
+        legend.position= "none",
+        axis.title = element_text(size=14),
+        axis.text = element_text(size=12),
+        axis.ticks.length = unit(-0.15,"cm"),
+        plot.margin=unit(c(1,0.7,1,0),"cm"),
+        plot.tag.position = "topleft",
+        plot.tag = element_text(size=14))+
+  geom_text(x=375,y=140,
+            label=expression(atop("R"^2~"=0.49",paste("RMSE=98.72"))), 
+            color="black", family="serif", size=12, size.unit="pt")+
+  geom_line(aes(x=line, y=line.1),color="black")
+
+fig4c
+
+# make the inset plot
+
+inset.plot <- fig4c + 
+  labs(x=NULL, y=NULL, caption=NULL,tag=NULL) + 
+  theme(legend.position = "none",
+        plot.margin=unit(c(0,0,0,0),"cm"))+
+  scale_x_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
+                     breaks=seq(40,80,40), limits=c(0,80),expand=c(0,0)) +
+  scale_y_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
+                     breaks=seq(0,80,40),limits=c(0,80), expand=c(0,0))
+
+# add inset plot to Fig. 4c
+fig4c_inset <-
+  ggdraw() +
+  draw_plot(fig4c) +
+  draw_plot(inset.plot, x = 0.25, y = .61, width = .36, height = .26)
+
+fig4c_inset
+
+# Fig. 4 combined plot
+
+fig4 <- grid.arrange(fig4a, fig4b, fig4c_inset, ncol=3)
+
+ggsave("fig4.pdf", plot=fig4,
+       path= "figure path",
+       units="in",
+       width=12,
+       height=5,
+       device="pdf",
+       dpi=600)
+
