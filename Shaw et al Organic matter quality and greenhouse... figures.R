@@ -419,3 +419,207 @@ ggsave("fig4.pdf", plot=fig4,
        device="pdf",
        dpi=600)
 
+
+
+
+
+
+### Supplemental Figure 1 - depth profiles
+
+library(ggplot2)
+library(tidyverse)
+library(gridExtra)
+library(lemon)
+
+suppfigdata <- read.delim(".txt file path")
+suppfigdata$Core <- as.factor(suppfigdata$Core) #make core into factor so that the symbols work later
+
+
+# Supp. Fig. 1a - %C as sugars & depth
+
+csugars <- ggplot(data=suppfigdata,
+                  aes(x=X.CasSugars,y=Depth,colour = Microtopography, shape=Core))+
+  geom_point(size=3)+
+  labs(x="% C as Sugars",y="Depth (m)",
+       tag=expression("a."))+
+  expand_limits(x = 0, y = 0)+
+  scale_x_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
+                     position = "top", breaks=seq(0,15,5), limits=c(0,15),expand=c(0,0)) +
+  scale_y_continuous(sec.axis=dup_axis(name=NULL, labels = NULL),
+                     breaks=seq(0.5,3,0.5),limits=c(0,3), expand=c(0,0))+
+  coord_trans(y = "reverse")+
+  guides(color = guide_legend(override.aes = list(size = 5)))+
+  theme(panel.background = element_rect(fill = NA),
+        panel.grid.major = element_line(colour = NA),
+        panel.grid.minor = element_line(colour = NA),
+        panel.border=element_rect(colour="black",fill=NA,linewidth=1),
+        text=element_text(family = "serif"),
+        legend.position = "none",
+        axis.title = element_text(size=15),
+        axis.text = element_text(size=14),
+        axis.ticks.length = unit(-0.15,"cm"),
+        plot.margin=unit(c(0.3,0.2,0.3,0.7),"cm"),
+        plot.tag.position = "topleft",
+        plot.tag = element_text(size=14))
+
+csugars
+
+# Supp. Fig. 1b - % C as AA & depth
+
+cthaa <- ggplot(data=suppfigdata,
+                aes(x=X..CasAA,y=Depth,colour = Microtopography, shape=Core))+
+  geom_point(size=3)+
+  labs(x="% C as THAA", y=NULL,
+       tag=expression("b."))+
+  expand_limits(x = 0, y = 0)+
+  scale_x_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
+                     position = "top", breaks=seq(0,15,5), limits=c(0,15),expand=c(0,0)) +
+  scale_y_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
+                     breaks=seq(0.5,3,0.5),limits=c(0,3), expand=c(0,0))+
+  coord_trans(y = "reverse")+
+  guides(color = guide_legend(override.aes = list(size = 5)))+
+  theme(panel.background = element_rect(fill = NA),
+        panel.grid.major = element_line(colour = NA),
+        panel.grid.minor = element_line(colour = NA),
+        panel.border=element_rect(colour="black",fill=NA,linewidth=1),
+        text=element_text(family = "serif"),
+        legend.position = "none",
+        axis.title = element_text(size=15),
+        axis.text = element_text(size=14),
+        axis.ticks.length = unit(-0.15,"cm"),
+        plot.margin=unit(c(0.3,0.6,0.3,0.7),"cm"),
+        plot.tag.position = "topleft",
+        plot.tag = element_text(size=14))
+
+cthaa
+
+# Supp. Fig. 1c - % N as AA & depth
+
+nthaa <- ggplot(data=suppfigdata,
+                aes(x=X..NasAA,y=Depth,colour = Microtopography, shape=Core))+
+  geom_point(size=3)+
+  labs(x="% N as THAA", y=NULL,
+       tag=expression("c."))+
+  expand_limits(x = 0, y = 0)+
+  scale_x_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
+                     position = "top", breaks=seq(0,70,10), limits=c(0,70),expand=c(0,0)) +
+  scale_y_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
+                     breaks=seq(0.5,3,0.5),limits=c(0,3), expand=c(0,0))+
+  coord_trans(y = "reverse")+
+  guides(color = guide_legend(override.aes = list(size = 5)))+
+  theme(panel.background = element_rect(fill = NA),
+        panel.grid.major = element_line(colour = NA),
+        panel.grid.minor = element_line(colour = NA),
+        panel.border=element_rect(colour="black",fill=NA,linewidth=1),
+        text=element_text(family = "serif"),
+        legend.position = "none",
+        axis.title = element_text(size=15),
+        axis.text = element_text(size=14),
+        axis.ticks.length = unit(-0.15,"cm"),
+        plot.margin=unit(c(0.3,0.7,0.3,0.1),"cm"),
+        plot.tag.position = "topleft",
+        plot.tag = element_text(size=14))
+
+nthaa
+
+# Supp. Fig. 1d - C:N & depth
+
+cn <- ggplot(data=suppfigdata,
+             aes(x=C.N, y=Depth,colour = Microtopography, shape=Core))+
+  geom_point(size=3)+
+  labs(x="C:N", y= "Depth (m)",
+       tag=expression("d."))+
+  expand_limits(x = 0, y = 0)+
+  scale_x_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
+                     position = "top", breaks=seq(0,25,5), limits=c(0,25),expand=c(0,0)) +
+  scale_y_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
+                     breaks=seq(0.5,3,0.5),limits=c(0,3), expand=c(0,0))+
+  coord_trans(y = "reverse")+
+  guides(color = guide_legend(override.aes = list(size = 5)))+
+  theme(panel.background = element_rect(fill = NA),
+        panel.grid.major = element_line(colour = NA),
+        panel.grid.minor = element_line(colour = NA),
+        panel.border=element_rect(colour="black",fill=NA,linewidth=1),
+        text=element_text(family = "serif"),
+        legend.position = "none",# legend.position.inside=c(.94,0.1),
+        axis.title = element_text(size=15),
+        axis.text = element_text(size=14),
+        axis.ticks.length = unit(-0.15,"cm"),
+        plot.margin=unit(c(0.3,0.2,0.5,0),"cm"),
+        plot.tag.position = "topleft",
+        plot.tag = element_text(size=14))
+
+cn
+
+# Supp. Fig. 1e - % Rhamnose & depth
+
+rhamnose <- ggplot(data=suppfigdata,
+                   aes(x=X.Rhamnose,y=Depth,colour = Microtopography, shape= Core))+
+  geom_point(size=3)+
+  labs(x="% Rhamnose", y=NULL,
+       tag=expression("e."))+
+  expand_limits(x = 0, y = 0)+
+  scale_x_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
+                     position = "top", breaks=seq(0,20,4), limits=c(0,20), expand=c(0,0)) +
+  scale_y_continuous(sec.axis=dup_axis(name=NULL, labels=NULL),
+                     breaks=seq(.5,3,.5),limits=c(0,3), expand=c(0,0))+
+  coord_trans(y = "reverse")+
+  guides(shape = guide_legend(order=1),
+         color = guide_legend(override.aes = list(size = 3),nrow=3,)
+  )+
+  theme(panel.background = element_rect(fill = NA),
+        panel.grid.major = element_line(colour = NA),
+        panel.grid.minor = element_line(colour = NA),
+        panel.border=element_rect(colour="black",fill=NA,linewidth=1),
+        text=element_text(family = "serif"),
+        legend.position = "inside", legend.position.inside=c(.45,0.45),
+        legend.direction = "horizontal",
+        legend.title.position = "top", 
+        legend.background=element_rect(linewidth=.5,colour="black"),
+        legend.title = element_text(face="bold",size=14, hjust=0.5),
+        legend.text = element_text(size=12),
+        legend.box.just = "center",
+        axis.title = element_text(size=15),
+        axis.text = element_text(size=14),
+        axis.ticks.length = unit(-0.15,"cm"),
+        plot.margin=unit(c(0.3,0.6,0.5,0.6),"cm"),
+        plot.tag.position = "topleft",
+        plot.tag = element_text(size=14))
+
+rhamnose
+
+#running rhamnose without the legend for the combo plot
+
+rhamnosenoleg <- rhamnose+theme(legend.position = "none")
+rhamnosenoleg
+
+#pulling the legend out of rhamnose and making it its own object
+
+g_legend<-function(a.gplot){
+  tmp <- ggplot_gtable(ggplot_build(a.gplot))
+  leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box")
+  legend <- tmp$grobs[[leg]]
+  return(legend)}
+
+mylegend<-g_legend(rhamnose)
+
+mylegend
+
+# Supp. Fig. 1 Combined plot
+
+suppfig <- grid.arrange(grobs=list(csugars, cthaa, nthaa, cn, rhamnosenoleg,mylegend), 
+                        layout_matrix = matrix(c(1,1,2,2,3,3,
+                                                 NA,4,4,5,5,6),nrow=2, byrow=T),
+                        widths=c(0.5,0.5,0.5,0.5,0.5,0.4),
+                        heights=c(1,1))
+
+suppfig
+
+ggsave("suppfig.pdf", plot=suppfig,
+       path= "figure path",
+       units="in",
+       width=12.5,
+       height=9,
+       device="pdf",
+       dpi=600)
+
