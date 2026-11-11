@@ -270,3 +270,16 @@ ggsave("fig3.pdf", plot=fig3combo,
        device="pdf",
        dpi=600)
 
+
+
+### Figure 4
+
+library(ggplot2)
+library(tidyverse)
+library(dplyr)
+library(gridExtra)
+library(cowplot)
+
+fig4data <- read.delim(".txt file path")
+
+# Fig. 4a - Predicted vs. experimental aerobic CO2 
