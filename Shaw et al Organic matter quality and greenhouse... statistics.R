@@ -68,9 +68,9 @@ library(tidyverse)
 library(broom)
 library(AICcmodavg)
 
-GHGdata<-read.csv(".csv file path", header = TRUE, colClasses = c("numeric", "factor","numeric","numeric","numeric","factor"))
+GHGdata<-read.delim("C:/Users/rache/Downloads/work/Philben/philben_anova_11_2026.txt", header = TRUE, colClasses = c("character", "factor","numeric","numeric","numeric","numeric"))
 
-two.way.anaCO2 <- aov(Anaerobic_CO2 ~ Depth+Microtopography, data = GHGdata)
+two.way.anaCO2 <- aov(AnaCO2 ~ Depth+Microtopography, data = GHGdata)
 summary(two.way.anaCO2)
 
 two.way.aerCO2 <- aov(Aerobic_CO2 ~ Depth*Microtopography, data = GHGdata)
@@ -86,4 +86,11 @@ TukeyHSD(two.way.anaCO2)
 TukeyHSD(two.way.aerCO2)
 TukeyHSD(two.way.methane)
 
+# looking at individual microtopographical differences in GHG production by depth
 
+GHGdata_sedge <- subset(GHGdata, Microtopography=="SedgeMeadow")
+GHGdata_humm <- subset(GHGdata, Microtopography=="Hummock")
+GHGdata_holl <- subset(GHGdata, Microtopography=="Hollow")
+
+one.way.anaCO2 <- aov(AnaCO2 ~ Depth, data = GHGdata_sedge)
+summary(one.way.anaCO2)
