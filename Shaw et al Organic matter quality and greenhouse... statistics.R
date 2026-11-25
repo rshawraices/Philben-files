@@ -69,7 +69,7 @@ library(broom)
 library(AICcmodavg)
 library(dbplyr)
 
-GHGdata<-read.delim("C:/Users/rache/Downloads/work/Philben/philben_anova_11_2026.txt", header = TRUE, colClasses = c("character", "factor","numeric","numeric","numeric","numeric"))
+GHGdata<-read.delim(".txt file path", header = TRUE, colClasses = c("character", "factor","numeric","numeric","numeric","numeric"))
 
 #need to bin the depth values into categories for ANOVA 
 GHGdata <- GHGdata %>% mutate(Depthcat = case_when(GHGdata$Depth >= 0  & GHGdata$Depth <= 1 ~ 'shallow',
