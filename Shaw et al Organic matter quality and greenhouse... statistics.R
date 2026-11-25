@@ -92,11 +92,31 @@ TukeyHSD(two.way.anaCO2)
 TukeyHSD(two.way.aerCO2)
 TukeyHSD(two.way.methane)
 
-# looking at individual microtopographical differences in GHG production by depth
+
+# looking at differences between GHG production within specific microtopographies
 
 GHGdata_sedge <- subset(GHGdata, Microtopography=="SedgeMeadow")
 GHGdata_humm <- subset(GHGdata, Microtopography=="Hummock")
 GHGdata_holl <- subset(GHGdata, Microtopography=="Hollow")
 
-one.way.anaCO2 <- aov(AnaCO2 ~ Depth, data = GHGdata_sedge)
-summary(one.way.anaCO2)
+one.way.anaCO2.sedge <- aov(AnaCO2 ~ Depthcat, data = GHGdata_sedge)
+one.way.anaCO2.holl <- aov(AnaCO2 ~ Depthcat, data = GHGdata_holl)
+one.way.anaCO2.humm <- aov(AnaCO2 ~ Depthcat, data = GHGdata_humm)
+summary(one.way.anaCO2.sedge)
+summary(one.way.anaCO2.holl)
+summary(one.way.anaCO2.humm)
+
+
+one.way.aerCO2.sedge <- aov(AerCO2 ~ Depthcat, data = GHGdata_sedge)
+one.way.aerCO2.holl <- aov(AerCO2 ~ Depthcat, data = GHGdata_holl)
+one.way.aerCO2.humm <- aov(AerCO2 ~ Depthcat, data = GHGdata_humm)
+summary(one.way.aerCO2.sedge)
+summary(one.way.aerCO2.holl)
+summary(one.way.aerCO2.humm)
+
+one.way.methane.sedge <- aov(CH4 ~ Depthcat, data = GHGdata_sedge)
+one.way.methane.holl <- aov(CH4 ~ Depthcat, data = GHGdata_holl)
+one.way.methane.humm <- aov(CH4 ~ Depthcat, data = GHGdata_humm)
+summary(one.way.methane.sedge)
+summary(one.way.methane.holl)
+summary(one.way.methane.humm)
