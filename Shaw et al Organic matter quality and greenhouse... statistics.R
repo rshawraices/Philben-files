@@ -70,25 +70,26 @@ library(AICcmodavg)
 library(dbplyr)
 
 GHGdata<-read.delim("C:/Users/rache/Downloads/work/Philben/philben_anova_11_2026.txt", header = TRUE, colClasses = c("character", "factor","numeric","numeric","numeric","numeric"))
-#GHGdata$Depth<-factor(GHGdata$Depth, ordered=T) #have to turn Depth into ordered factor for ANOVA
+
+#need to bin the depth values into categories for ANOVA 
 GHGdata <- GHGdata %>% mutate(Depthcat = case_when(GHGdata$Depth >= 0  & GHGdata$Depth <= 1 ~ 'shallow',
                                              Depth >= 1.01  & Depth <= 2 ~ 'intermediate',
                                              Depth >= 2.01  & Depth <= 3 ~ 'deep'))
 
-two.way.anaCO2 <- aov(AnaCO2 ~ Depth+Microtopography, data = GHGdata)
+two.way.anaCO2 <- aov(AnaCO2 ~ Depthcat+Microtopography, data = GHGdata)
 summary(two.way.anaCO2)
 
 two.way.aerCO2 <- aov(AerCO2 ~ Depthcat*Microtopography, data = GHGdata)
 summary(two.way.aerCO2)
 
-two.way.methane <- aov(CH4 ~ Depth*Microtopography, data = GHGdata)
+two.way.methane <- aov(CH4 ~ Depthcat*Microtopography, data = GHGdata)
 summary(two.way.methane)
 
 
-# Tukey's post-hoc test - doesn't work because Depth isn't a factor...
+# Tukey's post-hoc test
 
 TukeyHSD(two.way.anaCO2)
-TukeyHSD(two.way.aerCO2, "Depthcat", ordered=TRUE)
+TukeyHSD(two.way.aerCO2)
 TukeyHSD(two.way.methane)
 
 # looking at individual microtopographical differences in GHG production by depth
